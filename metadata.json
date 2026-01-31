@@ -1,0 +1,8 @@
+{
+  "name": "Tech Kelly | Kingsley Etim",
+  "description": "Professional Content Developer, Video Master, and Community Builder.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
