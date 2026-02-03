@@ -11,8 +11,11 @@ export default function SkillBarSection() {
     <section className="py-20 bg-zinc-950/50 border-y border-white/5 relative overflow-hidden">
       {/* Background gradient effect */}
       <div className="absolute inset-0 bg-linear-to-r from-emerald-500/5 via-transparent to-emerald-500/5" />
-
-      <div className="max-w-6xl mx-auto px-6">
+      
+      {/* Section-specific pattern */}
+      <div className="absolute inset-0 bg-pattern-tech opacity-20 pointer-events-none" />
+      
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
         <motion.div
           initial={{ y: 50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
