@@ -7,9 +7,12 @@ import {
 } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import LoadingScreen from "./components/LoadingScreen";
+import BackgroundPattern from "./components/BackgroundPattern";
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import CV from "./pages/CV";
+import { useInitialLoad } from "./hooks/useInitialLoad";
 
 // ScrollToTop component to reset scroll on route change
 const ScrollToTop = () => {
@@ -21,19 +24,33 @@ const ScrollToTop = () => {
 };
 
 const App: React.FC = () => {
+  const { isLoading, handleLoadingComplete } = useInitialLoad();
+
+  // Show loading screen on page reload/refresh
+  if (isLoading) {
+    return <LoadingScreen onLoadingComplete={handleLoadingComplete} />;
+  }
+
   return (
     <Router>
       <ScrollToTop />
-      <div className="flex flex-col min-h-screen bg-zinc-950 text-zinc-50 selection:bg-emerald-500 selection:text-zinc-950">
-        <Navbar />
-        <main className="grow mt-20">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/cv" element={<CV />} />
-          </Routes>
-        </main>
-        <Footer />
+      <div className="flex flex-col min-h-screen bg-zinc-950 text-zinc-50 selection:bg-emerald-500 selection:text-zinc-950 relative">
+        {/* Background Pattern Layers */}
+        <BackgroundPattern variant="circuit" opacity={0.4} />
+        <BackgroundPattern variant="dots" opacity={0.2} animated />
+
+        {/* Content Layer */}
+        <div className="relative z-10">
+          <Navbar />
+          <main className="grow mt-20">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/cv" element={<CV />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
       </div>
     </Router>
   );
