@@ -1,7 +1,7 @@
 import { SKILLS } from "@/constants";
 import { Zap } from "lucide-react";
 import { motion } from "framer-motion";
-import { animationTransition } from "@/utils/animation";
+import { animationTransition, animationViewPort } from "@/utils/animation";
 
 export default function SkillBarSection() {
   return (
@@ -13,7 +13,8 @@ export default function SkillBarSection() {
             className="flex items-center gap-4 group"
             initial={{ x: -250, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
-            transition={{ ...animationTransition(0.5), delay: idx * 0.05 }}
+            transition={{ ...animationTransition(1), delay: idx * 0.05 }}
+            viewport={animationViewPort}
           >
             <Zap className="w-5 h-5 text-emerald-500 fill-emerald-500" />
             <span className="text-2xl md:text-4xl font-black font-display opacity-20 transition-opacity hover:opacity-100 uppercase italic tracking-tighter cursor-default">
