@@ -7,9 +7,11 @@ import {
 } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import LoadingScreen from "./components/LoadingScreen";
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import CV from "./pages/CV";
+import { useInitialLoad } from "./hooks/useInitialLoad";
 
 // ScrollToTop component to reset scroll on route change
 const ScrollToTop = () => {
@@ -21,6 +23,13 @@ const ScrollToTop = () => {
 };
 
 const App: React.FC = () => {
+  const { isLoading, handleLoadingComplete } = useInitialLoad();
+
+  // Show loading screen on page reload/refresh
+  if (isLoading) {
+    return <LoadingScreen onLoadingComplete={handleLoadingComplete} />;
+  }
+
   return (
     <Router>
       <ScrollToTop />
