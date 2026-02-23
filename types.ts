@@ -1,5 +1,7 @@
-
-export type ProjectCategory = 'Video Editing' | 'Motion Graphics' | 'Script Writing' | 'Creative Direction';
+export type ProjectCategory =
+  | "Content and Video Edits"
+  | "Graphics"
+  | "Video Animations";
 
 export interface Project {
   id: string;
@@ -16,7 +18,7 @@ export interface Project {
 export interface Skill {
   name: string;
   level: number; // 0 to 100
-  category: 'Software' | 'Skillset';
+  category: "Software" | "Skillset";
 }
 
 export interface Experience {

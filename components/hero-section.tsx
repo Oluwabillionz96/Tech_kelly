@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Layers, Sparkles, Terminal, Video } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import EncryptedText from "./EncryptedText";
 
 export default function HeroSection() {
   const { isMobile } = useScreenSize();
@@ -43,10 +44,13 @@ export default function HeroSection() {
           </div>
 
           <h1 className="text-5xl md:text-8xl font-bold font-display tracking-tighter leading-[0.85] mb-8">
-            Tech &nbsp;
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-emerald-400 via-emerald-200 to-white italic">
-              Kelly &nbsp;
-            </span>{" "}
+            <EncryptedText text="Tech" interval={100} />
+            &nbsp;
+            <EncryptedText
+              text="Kelly"
+              interval={100}
+              className="text-transparent bg-clip-text bg-linear-to-r from-emerald-400 via-emerald-200 to-white italic"
+            />
           </h1>
           {/* <h2>Jack of all trades • Master of videos</h2> */}
 

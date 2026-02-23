@@ -13,5 +13,24 @@ export default defineConfig(({ mode }) => {
         "@": path.resolve(__dirname, "."),
       },
     },
+
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            // Vendor chunks
+            'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+            'animation-vendor': ['framer-motion'],
+            'video-vendor': ['plyr-react'],
+            // Component chunks
+            'video-components': [
+              './components/VideoPlayer.tsx',
+              './components/ReelsPlayer.tsx',
+            ],
+          },
+        },
+      },
+      chunkSizeWarningLimit: 600,
+    },
   };
 });

@@ -1,4 +1,4 @@
-import React from "react";
+import { lazy, Suspense, useEffect } from "react";
 import {
   HashRouter as Router,
   Routes,
@@ -9,15 +9,25 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import LoadingScreen from "./components/LoadingScreen";
 import BackgroundPattern from "./components/BackgroundPattern";
-import Home from "./pages/Home";
-import Projects from "./pages/Projects";
-import CV from "./pages/CV";
 import { useInitialLoad } from "./hooks/useInitialLoad";
+
+// Lazy load pages for code splitting
+const Home = lazy(() => import("./pages/Home"));
+const Projects = lazy(() => import("./pages/Projects"));
+const ProjectCategory = lazy(() => import("./pages/ProjectCategory"));
+const CV = lazy(() => import("./pages/CV"));
+
+// Loading fallback component
+const PageLoader = () => (
+  <div className="min-h-screen flex items-center justify-center">
+    <div className="w-12 h-12 border-4 border-zinc-700 border-t-emerald-500 rounded-full animate-spin" />
+  </div>
+);
 
 // ScrollToTop component to reset scroll on route change
 const ScrollToTop = () => {
   const { pathname } = useLocation();
-  React.useEffect(() => {
+  useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
   return null;
@@ -43,11 +53,14 @@ const App: React.FC = () => {
         <div className="relative z-10">
           <Navbar />
           <main className="grow mt-20">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/projects" element={<Projects />} />
-              <Route path="/cv" element={<CV />} />
-            </Routes>
+            <Suspense fallback={<PageLoader />}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/projects" element={<Projects />} />
+                <Route path="/projects/:category" element={<ProjectCategory />} />
+                <Route path="/cv" element={<CV />} />
+              </Routes>
+            </Suspense>
           </main>
           <Footer />
         </div>
