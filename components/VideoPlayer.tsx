@@ -26,8 +26,9 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   className = "",
 }) => {
   const [isOffline, setIsOffline] = useState(!navigator.onLine);
+  const [isReady, setIsReady] = useState(false);
   const plyrRef = React.useRef<any>(null);
-  const videoId = React.useRef(`video-${Math.random().toString(36).substr(2, 9)}`);
+  const videoId = React.useRef(`video-${Math.random().toString(36).substring(2, 11)}`);
 
   useEffect(() => {
     const handleOnline = () => setIsOffline(false);
@@ -62,11 +63,20 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
         const handlePlay = () => {
           window.dispatchEvent(new CustomEvent('video-play', { detail: { id: videoId.current } }));
         };
+        
+        const handleCanPlay = () => {
+          setIsReady(true);
+        };
+        
         videoElement.addEventListener('play', handlePlay);
+        videoElement.addEventListener('canplay', handleCanPlay);
+        videoElement.addEventListener('loadeddata', handleCanPlay);
         
         // Store cleanup function
         return () => {
           videoElement.removeEventListener('play', handlePlay);
+          videoElement.removeEventListener('canplay', handleCanPlay);
+          videoElement.removeEventListener('loadeddata', handleCanPlay);
         };
       }
     }, 100);
@@ -123,6 +133,20 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
     >
+      {/* Loading Spinner */}
+      <AnimatePresence>
+        {!isReady && (
+          <motion.div
+            className="absolute inset-0 z-30 bg-zinc-900 flex items-center justify-center"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="w-12 h-12 border-4 border-zinc-700 border-t-emerald-500 rounded-full animate-spin" />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Offline Spinner */}
       <AnimatePresence>
         {isOffline && (
@@ -150,7 +174,9 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
         </motion.div>
       )}
 
-      <Plyr ref={plyrRef} source={videoSrc} options={plyrOptions} />
+      <div className={isReady ? "opacity-100" : "opacity-0"}>
+        <Plyr ref={plyrRef} source={videoSrc} options={plyrOptions} />
+      </div>
     </motion.div>
   );
 };
