@@ -17,10 +17,12 @@ const Projects = lazy(() => import("./pages/Projects"));
 const ProjectCategory = lazy(() => import("./pages/ProjectCategory"));
 const CV = lazy(() => import("./pages/CV"));
 
-// Loading fallback component
+// Loading fallback for route transitions
 const PageLoader = () => (
   <div className="min-h-screen flex items-center justify-center">
-    <div className="w-12 h-12 border-4 border-zinc-700 border-t-emerald-500 rounded-full animate-spin" />
+    <p className="text-emerald-500 text-sm font-bold uppercase tracking-widest">
+      Please wait...
+    </p>
   </div>
 );
 
@@ -57,7 +59,10 @@ const App: React.FC = () => {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/projects" element={<Projects />} />
-                <Route path="/projects/:category" element={<ProjectCategory />} />
+                <Route
+                  path="/projects/:category"
+                  element={<ProjectCategory />}
+                />
                 <Route path="/cv" element={<CV />} />
               </Routes>
             </Suspense>
