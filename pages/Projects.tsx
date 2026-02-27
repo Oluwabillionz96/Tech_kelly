@@ -48,11 +48,11 @@ const Projects: React.FC = () => {
     switch (color) {
       case "emerald":
         return {
-          bg: "bg-emerald-500/10",
-          border: "border-emerald-500/20",
-          text: "text-emerald-500",
-          hover: "hover:border-emerald-500/50",
-          glow: "group-hover:shadow-emerald-500/20",
+          bg: "bg-[#CC9933]/10",
+          border: "border-[#CC9933]/20",
+          text: "text-[#CC9933]",
+          hover: "hover:border-[#CC9933]/50",
+          glow: "group-hover:shadow-[#CC9933]/20",
         };
       case "blue":
         return {
@@ -72,11 +72,11 @@ const Projects: React.FC = () => {
         };
       default:
         return {
-          bg: "bg-emerald-500/10",
-          border: "border-emerald-500/20",
-          text: "text-emerald-500",
-          hover: "hover:border-emerald-500/50",
-          glow: "group-hover:shadow-emerald-500/20",
+          bg: "bg-[#CC9933]/10",
+          border: "border-[#CC9933]/20",
+          text: "text-[#CC9933]",
+          hover: "hover:border-[#CC9933]/50",
+          glow: "group-hover:shadow-[#CC9933]/20",
         };
     }
   };
@@ -206,7 +206,7 @@ const Projects: React.FC = () => {
               Get in touch to view detailed case studies and discuss your next
               project.
             </p>
-            <button className="bg-emerald-500 text-black px-8 py-4 rounded-xl font-bold hover:bg-emerald-400 transition-colors">
+            <button className="bg-[#CC9933] text-black px-8 py-4 rounded-xl font-bold hover:bg-[#CC9933]/80 transition-colors">
               Contact Me
             </button>
           </div>

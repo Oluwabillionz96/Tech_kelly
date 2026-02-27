@@ -22,7 +22,7 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-32">
           <div className="md:col-span-2">
             <div className="flex items-center gap-3 mb-10">
-              <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-[#CC9933] rounded-lg flex items-center justify-center">
                 <Zap className="text-black w-5 h-5 fill-current" />
               </div>
               <span className="text-xl font-black tracking-[0.2em] uppercase font-display">
@@ -31,11 +31,11 @@ const Footer: React.FC = () => {
             </div>
             <h2 className="text-5xl lg:text-7xl font-bold font-display mb-10 tracking-tighter max-w-xl">
               Let's make some{" "}
-              <span className="text-emerald-500 italic">noise.</span>
+              <span className="text-[#CC9933] italic">noise.</span>
             </h2>
             <a
               href="mailto:kerllyboi@gmail.com"
-              className="group inline-flex items-center gap-4 text-2xl font-bold border-b-2 border-emerald-500 pb-2 hover:text-emerald-400 hover:border-emerald-400 transition-colors"
+              className="group inline-flex items-center gap-4 text-2xl font-bold border-b-2 border-[#CC9933] pb-2 hover:text-[#CC9933] hover:border-[#CC9933]/80 transition-colors"
             >
               kerllyboi@gmail.com
               <ArrowUpRight className="w-6 h-6 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
@@ -43,7 +43,7 @@ const Footer: React.FC = () => {
           </div>
 
           <div className="lg:pt-10">
-            <h4 className="text-[10px] font-black text-emerald-500 uppercase tracking-[0.4em] mb-8">
+            <h4 className="text-[10px] font-black text-[#CC9933] uppercase tracking-[0.4em] mb-8">
               Directory
             </h4>
             <ul className="space-y-5 text-zinc-500 font-bold uppercase tracking-widest text-xs">
@@ -69,7 +69,7 @@ const Footer: React.FC = () => {
           </div>
 
           <div className="lg:pt-10">
-            <h4 className="text-[10px] font-black text-emerald-500 uppercase tracking-[0.4em] mb-8">
+            <h4 className="text-[10px] font-black text-[#CC9933] uppercase tracking-[0.4em] mb-8">
               Follow
             </h4>
             <div className="flex flex-wrap gap-4">
@@ -77,7 +77,7 @@ const Footer: React.FC = () => {
                 <a
                   key={i}
                   href="#"
-                  className="p-4 glass rounded-2xl hover:bg-emerald-500 hover:text-black transition-colors"
+                  className="p-4 glass rounded-2xl hover:bg-[#CC9933] hover:text-black transition-colors"
                 >
                   <Icon className="w-5 h-5" />
                 </a>

@@ -7,7 +7,7 @@ const Home: React.FC = () => {
     <div className="relative">
       {/* Static Background Gradients */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[-5%] right-[-5%] w-[40%] h-[40%] bg-emerald-500/5 rounded-full blur-[100px]"></div>
+        <div className="absolute top-[-5%] right-[-5%] w-[40%] h-[40%] bg-[#CC9933]/5 rounded-full blur-[100px]"></div>
         <div className="absolute bottom-[-5%] left-[-5%] w-[40%] h-[40%] bg-purple-500/5 rounded-full blur-[100px]"></div>
       </div>
 

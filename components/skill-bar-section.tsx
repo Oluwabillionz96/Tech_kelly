@@ -10,11 +10,11 @@ export default function SkillBarSection() {
   return (
     <section className="py-20 bg-zinc-950/50 border-y border-white/5 relative overflow-hidden">
       {/* Background gradient effect */}
-      <div className="absolute inset-0 bg-linear-to-r from-emerald-500/5 via-transparent to-emerald-500/5" />
-      
+      <div className="absolute inset-0 bg-linear-to-r from-[#CC9933]/5 via-transparent to-[#CC9933]/5" />
+
       {/* Section-specific pattern */}
       <div className="absolute inset-0 bg-pattern-tech opacity-20 pointer-events-none" />
-      
+
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         <motion.div
           initial={{ y: 50, opacity: 0 }}
@@ -63,7 +63,7 @@ export default function SkillBarSection() {
               onMouseLeave={() => setHoveredSkill(null)}
             >
               {/* Skill container */}
-              <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-emerald-500/30 transition-all duration-500 hover:shadow-lg hover:shadow-emerald-500/10">
+              <div className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-[#CC9933]/30 transition-all duration-500 hover:shadow-lg hover:shadow-[#CC9933]/10">
                 {/* Skill header */}
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center gap-3">
@@ -80,12 +80,12 @@ export default function SkillBarSection() {
                       {skill.level === 100 ? (
                         <Star className="w-6 h-6 text-yellow-500 fill-yellow-500" />
                       ) : (
-                        <Zap className="w-6 h-6 text-emerald-500 fill-emerald-500" />
+                        <Zap className="w-6 h-6 text-[#CC9933] fill-[#CC9933]" />
                       )}
                     </motion.div>
                     <div className="flex flex-col">
                       <motion.h3
-                        className="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors"
+                        className="text-xl font-bold text-white group-hover:text-[#CC9933] transition-colors"
                         initial={{ x: -20, opacity: 0 }}
                         whileInView={{ x: 0, opacity: 1 }}
                         transition={{ delay: idx * 0.1 + 0.2 }}
@@ -99,7 +99,7 @@ export default function SkillBarSection() {
                   <motion.span
                     className="text-2xl font-black"
                     style={{
-                      color: skill.level === 100 ? "#eab308" : "#10b981",
+                      color: skill.level === 100 ? "#eab308" : "#CC9933",
                     }}
                     initial={{ scale: 0, opacity: 0 }}
                     whileInView={{ scale: 1, opacity: 1 }}
@@ -125,7 +125,7 @@ export default function SkillBarSection() {
                       background:
                         skill.level === 100
                           ? "linear-gradient(90deg, #eab308, #f59e0b)"
-                          : "linear-gradient(90deg, #10b981, #059669)",
+                          : "linear-gradient(90deg, #CC9933, #b8862e)",
                     }}
                     initial={{ scaleX: 0 }}
                     whileInView={{ scaleX: skill.level / 100 }}
@@ -157,7 +157,7 @@ export default function SkillBarSection() {
                   className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                   style={{
                     background:
-                      "radial-gradient(circle at center, rgba(16, 185, 129, 0.1) 0%, transparent 70%)",
+                      "radial-gradient(circle at center, rgba(204, 153, 51, 0.1) 0%, transparent 70%)",
                   }}
                 />
               </div>

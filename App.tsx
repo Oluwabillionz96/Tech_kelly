@@ -20,7 +20,7 @@ const CV = lazy(() => import("./pages/CV"));
 // Loading fallback for route transitions
 const PageLoader = () => (
   <div className="min-h-screen flex items-center justify-center">
-    <p className="text-emerald-500 text-sm font-bold uppercase tracking-widest">
+    <p className="text-[#CC9933] text-sm font-bold uppercase tracking-widest">
       Please wait...
     </p>
   </div>
@@ -46,7 +46,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <ScrollToTop />
-      <div className="flex flex-col min-h-screen bg-zinc-950 text-zinc-50 selection:bg-emerald-500 selection:text-zinc-950 relative">
+      <div className="flex flex-col min-h-screen bg-zinc-950 text-zinc-50 selection:bg-[#CC9933] selection:text-black relative">
         {/* Background Pattern Layers */}
         <BackgroundPattern variant="circuit" opacity={0.4} />
         <BackgroundPattern variant="dots" opacity={0.2} animated />

@@ -25,7 +25,7 @@ const ProjectCategory: React.FC = () => {
           <h1 className="text-4xl font-bold text-white mb-4">
             Category Not Found
           </h1>
-          <Link to="/projects" className="text-emerald-500 hover:underline">
+          <Link to="/projects" className="text-[#CC9933] hover:underline">
             Back to Projects
           </Link>
         </div>
@@ -131,7 +131,9 @@ const ProjectCategory: React.FC = () => {
                       {/* Play Button Overlay */}
                       <div className="absolute inset-0 flex items-center justify-center bg-black/30">
                         <div className="w-20 h-20 flex items-center justify-center bg-white/90 rounded-full">
-                          <Play className={`w-10 h-10 ${colors.text} fill-current ml-1`} />
+                          <Play
+                            className={`w-10 h-10 ${colors.text} fill-current ml-1`}
+                          />
                         </div>
                       </div>
                     </div>
@@ -154,7 +156,7 @@ const ProjectCategory: React.FC = () => {
                 </>
               ) : (
                 <div
-                  className="group bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-2xl overflow-hidden hover:border-emerald-500/30 transition-all duration-300 cursor-pointer"
+                  className="group bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-2xl overflow-hidden hover:border-[#CC9933]/30 transition-all duration-300 cursor-pointer"
                   onClick={() => {
                     setLightboxIndex(idx);
                     setLightboxOpen(true);
@@ -168,7 +170,7 @@ const ProjectCategory: React.FC = () => {
                     />
                   </div>
                   <div className="p-6">
-                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">
+                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#CC9933] transition-colors">
                       {project.title}
                     </h3>
                     <div className="flex flex-wrap gap-2">

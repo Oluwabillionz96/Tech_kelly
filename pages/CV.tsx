@@ -19,14 +19,14 @@ const CV: React.FC = () => {
     <div className="pt-32 pb-20 min-h-screen">
       <div className="max-w-5xl mx-auto px-6">
         {/* Header Section */}
-        <motion.div 
+        <motion.div
           className="flex flex-col lg:flex-row justify-between items-start gap-12 mb-24"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={animationTransition(0.8)}
         >
           <div className="flex-1">
-            <motion.h1 
+            <motion.h1
               className="text-7xl font-bold font-display tracking-tighter mb-4"
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
@@ -34,44 +34,44 @@ const CV: React.FC = () => {
             >
               Kingsley Etim
             </motion.h1>
-            <motion.p 
-              className="text-2xl text-emerald-500 font-bold uppercase tracking-[0.2em] mb-8"
+            <motion.p
+              className="text-2xl text-[#CC9933] font-bold uppercase tracking-[0.2em] mb-8"
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ ...animationTransition(0.8), delay: 0.4 }}
             >
               Professional Content Developer
             </motion.p>
-            <motion.div 
+            <motion.div
               className="grid grid-cols-1 md:grid-cols-2 gap-4 text-zinc-400"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ ...animationTransition(0.8), delay: 0.6 }}
             >
-              <motion.div 
+              <motion.div
                 className="flex items-center gap-3"
                 whileHover={{ x: 5, transition: { duration: 0.2 } }}
               >
-                <Mail size={16} className="text-emerald-500" />
+                <Mail size={16} className="text-[#CC9933]" />
                 <span>kerllyboi@gmail.com</span>
               </motion.div>
-              <motion.div 
+              <motion.div
                 className="flex items-center gap-3"
                 whileHover={{ x: 5, transition: { duration: 0.2 } }}
               >
-                <Phone size={16} className="text-emerald-500" />
+                <Phone size={16} className="text-[#CC9933]" />
                 <span>+234 812 921 6478</span>
               </motion.div>
-              <motion.div 
+              <motion.div
                 className="flex items-center gap-3"
                 whileHover={{ x: 5, transition: { duration: 0.2 } }}
               >
-                <MapPin size={16} className="text-emerald-500" />
+                <MapPin size={16} className="text-[#CC9933]" />
                 <span>Nigeria, Africa</span>
               </motion.div>
             </motion.div>
           </div>
-          <motion.a 
+          <motion.a
             href="/CV.pdf"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -79,7 +79,7 @@ const CV: React.FC = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <button className="flex items-center gap-3 bg-white text-black px-10 py-5 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-emerald-500 transition-colors">
+            <button className="flex items-center gap-3 bg-white text-black px-10 py-5 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-[#CC9933] transition-colors">
               <Download className="w-5 h-5" />
               View Resume
             </button>
@@ -95,7 +95,7 @@ const CV: React.FC = () => {
               transition={animationTransition(0.8)}
               viewport={animationViewPort}
             >
-              <motion.div 
+              <motion.div
                 className="flex items-center gap-4 mb-12 border-b border-white/10 pb-6"
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -106,7 +106,7 @@ const CV: React.FC = () => {
                   whileHover={{ rotate: 360, scale: 1.2 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <Briefcase className="text-emerald-500 w-8 h-8" />
+                  <Briefcase className="text-[#CC9933] w-8 h-8" />
                 </motion.div>
                 <h2 className="text-3xl font-bold font-display tracking-tight uppercase">
                   Work History
@@ -119,56 +119,74 @@ const CV: React.FC = () => {
                     className="relative pl-10 border-l-2 border-zinc-800"
                     initial={{ opacity: 0, x: -50 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ ...animationTransition(0.6), delay: idx * 0.1 }}
+                    transition={{
+                      ...animationTransition(0.6),
+                      delay: idx * 0.1,
+                    }}
                     viewport={animationViewPort}
                     whileHover={{ x: 5 }}
                   >
-                    <motion.div 
-                      className="absolute -left-[9px] top-0 w-4 h-4 bg-zinc-900 rounded-full border-4 border-emerald-500"
+                    <motion.div
+                      className="absolute -left-[9px] top-0 w-4 h-4 bg-zinc-900 rounded-full border-4 border-[#CC9933]"
                       initial={{ scale: 0 }}
                       whileInView={{ scale: 1 }}
-                      transition={{ ...animationTransition(0.4), delay: idx * 0.1 + 0.3 }}
+                      transition={{
+                        ...animationTransition(0.4),
+                        delay: idx * 0.1 + 0.3,
+                      }}
                       viewport={animationViewPort}
                       whileHover={{ scale: 1.3 }}
                     />
                     <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-2 gap-2">
-                      <motion.h3 
+                      <motion.h3
                         className="text-2xl font-bold font-display"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ ...animationTransition(0.5), delay: idx * 0.1 + 0.2 }}
+                        transition={{
+                          ...animationTransition(0.5),
+                          delay: idx * 0.1 + 0.2,
+                        }}
                         viewport={animationViewPort}
                       >
                         {exp.role}
                       </motion.h3>
-                      <motion.span 
-                        className="text-emerald-500 font-black text-[10px] uppercase tracking-[0.2em] glass px-3 py-1 rounded-full"
+                      <motion.span
+                        className="text-[#CC9933] font-black text-[10px] uppercase tracking-[0.2em] glass px-3 py-1 rounded-full"
                         initial={{ opacity: 0, scale: 0.8 }}
                         whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ ...animationTransition(0.4), delay: idx * 0.1 + 0.4 }}
+                        transition={{
+                          ...animationTransition(0.4),
+                          delay: idx * 0.1 + 0.4,
+                        }}
                         viewport={animationViewPort}
                         whileHover={{ scale: 1.1 }}
                       >
                         {exp.period}
                       </motion.span>
                     </div>
-                    <motion.h4 
+                    <motion.h4
                       className="text-white/60 font-bold mb-6 uppercase text-xs tracking-[0.2em]"
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ ...animationTransition(0.5), delay: idx * 0.1 + 0.3 }}
+                      transition={{
+                        ...animationTransition(0.5),
+                        delay: idx * 0.1 + 0.3,
+                      }}
                       viewport={animationViewPort}
                     >
                       {exp.company}
                     </motion.h4>
                     <ul className="space-y-4">
                       {exp.description.map((item, i) => (
-                        <motion.li 
-                          key={i} 
+                        <motion.li
+                          key={i}
                           className="text-zinc-400 leading-relaxed"
                           initial={{ opacity: 0, x: -20 }}
                           whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ ...animationTransition(0.4), delay: idx * 0.1 + i * 0.1 + 0.5 }}
+                          transition={{
+                            ...animationTransition(0.4),
+                            delay: idx * 0.1 + i * 0.1 + 0.5,
+                          }}
                           viewport={animationViewPort}
                           whileHover={{ x: 10, color: "#a3a3a3" }}
                         >
@@ -188,7 +206,7 @@ const CV: React.FC = () => {
               transition={animationTransition(0.8)}
               viewport={animationViewPort}
             >
-              <motion.div 
+              <motion.div
                 className="flex items-center gap-4 mb-12 border-b border-white/10 pb-6"
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -199,7 +217,7 @@ const CV: React.FC = () => {
                   whileHover={{ rotate: 360, scale: 1.2 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <GraduationCap className="text-emerald-500 w-8 h-8" />
+                  <GraduationCap className="text-[#CC9933] w-8 h-8" />
                 </motion.div>
                 <h2 className="text-3xl font-bold font-display tracking-tight uppercase">
                   Academic
@@ -210,54 +228,71 @@ const CV: React.FC = () => {
                   {
                     title: "University of Uyo",
                     subtitle: "B.Eng in Civil Engineering • 2017 - 2022",
-                    description: "Successfully completed the Bachelor's degree with a focus on structural integrity and design."
+                    description:
+                      "Successfully completed the Bachelor's degree with a focus on structural integrity and design.",
                   },
                   {
                     title: "YAPPI",
                     subtitle: "Animator Certification • Oct 2024",
-                    description: "Intensive specialization in video editing and 3D animation systems."
-                  }
+                    description:
+                      "Intensive specialization in video editing and 3D animation systems.",
+                  },
                 ].map((edu, idx) => (
-                  <motion.div 
+                  <motion.div
                     key={idx}
                     className="relative pl-10 border-l-2 border-zinc-800"
                     initial={{ opacity: 0, x: -50 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ ...animationTransition(0.6), delay: idx * 0.2 }}
+                    transition={{
+                      ...animationTransition(0.6),
+                      delay: idx * 0.2,
+                    }}
                     viewport={animationViewPort}
                     whileHover={{ x: 5 }}
                   >
-                    <motion.div 
-                      className="absolute -left-[9px] top-0 w-4 h-4 bg-zinc-900 rounded-full border-4 border-emerald-500"
+                    <motion.div
+                      className="absolute -left-[9px] top-0 w-4 h-4 bg-zinc-900 rounded-full border-4 border-[#CC9933]"
                       initial={{ scale: 0 }}
                       whileInView={{ scale: 1 }}
-                      transition={{ ...animationTransition(0.4), delay: idx * 0.2 + 0.3 }}
+                      transition={{
+                        ...animationTransition(0.4),
+                        delay: idx * 0.2 + 0.3,
+                      }}
                       viewport={animationViewPort}
                       whileHover={{ scale: 1.3 }}
                     />
-                    <motion.h3 
+                    <motion.h3
                       className="text-2xl font-bold font-display"
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ ...animationTransition(0.5), delay: idx * 0.2 + 0.2 }}
+                      transition={{
+                        ...animationTransition(0.5),
+                        delay: idx * 0.2 + 0.2,
+                      }}
                       viewport={animationViewPort}
                     >
                       {edu.title}
                     </motion.h3>
-                    <motion.p 
-                      className="text-emerald-500 font-bold text-xs uppercase tracking-widest mb-2"
+                    <motion.p
+                      className="text-[#CC9933] font-bold text-xs uppercase tracking-widest mb-2"
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ ...animationTransition(0.5), delay: idx * 0.2 + 0.3 }}
+                      transition={{
+                        ...animationTransition(0.5),
+                        delay: idx * 0.2 + 0.3,
+                      }}
                       viewport={animationViewPort}
                     >
                       {edu.subtitle}
                     </motion.p>
-                    <motion.p 
+                    <motion.p
                       className="text-zinc-400"
                       initial={{ opacity: 0, y: 10 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ ...animationTransition(0.5), delay: idx * 0.2 + 0.4 }}
+                      transition={{
+                        ...animationTransition(0.5),
+                        delay: idx * 0.2 + 0.4,
+                      }}
                       viewport={animationViewPort}
                     >
                       {edu.description}
@@ -269,7 +304,7 @@ const CV: React.FC = () => {
           </div>
 
           {/* Sidebar */}
-          <motion.div 
+          <motion.div
             className="space-y-16"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -283,7 +318,7 @@ const CV: React.FC = () => {
               transition={{ ...animationTransition(0.6), delay: 0.2 }}
               viewport={animationViewPort}
             >
-              <motion.div 
+              <motion.div
                 className="flex items-center gap-3 mb-10 border-b border-white/10 pb-6"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -294,7 +329,7 @@ const CV: React.FC = () => {
                   whileHover={{ rotate: 360, scale: 1.2 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <Code className="text-emerald-500 w-7 h-7" />
+                  <Code className="text-[#CC9933] w-7 h-7" />
                 </motion.div>
                 <h2 className="text-xl font-bold font-display uppercase tracking-widest">
                   Toolkit
@@ -302,21 +337,24 @@ const CV: React.FC = () => {
               </motion.div>
               <div className="space-y-8">
                 {SKILLS.map((skill, idx) => (
-                  <motion.div 
-                    key={idx} 
+                  <motion.div
+                    key={idx}
                     className="group"
                     initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ ...animationTransition(0.4), delay: idx * 0.05 + 0.4 }}
+                    transition={{
+                      ...animationTransition(0.4),
+                      delay: idx * 0.05 + 0.4,
+                    }}
                     viewport={animationViewPort}
                     whileHover={{ x: 5 }}
                   >
                     <div className="flex justify-between text-[10px] font-black uppercase tracking-[0.2em] mb-3">
-                      <span className="text-zinc-400 group-hover:text-emerald-400 transition-colors">
+                      <span className="text-zinc-400 group-hover:text-[#CC9933] transition-colors">
                         {skill.name}
                       </span>
-                      <motion.span 
-                        className="text-emerald-500"
+                      <motion.span
+                        className="text-[#CC9933]"
                         whileHover={{ scale: 1.2 }}
                       >
                         {skill.level}%
@@ -324,10 +362,13 @@ const CV: React.FC = () => {
                     </div>
                     <div className="h-1.5 w-full bg-zinc-900 rounded-full overflow-hidden">
                       <motion.div
-                        className="h-full bg-emerald-500 rounded-full"
+                        className="h-full bg-[#CC9933] rounded-full"
                         initial={{ width: 0 }}
                         whileInView={{ width: `${skill.level}%` }}
-                        transition={{ ...animationTransition(1), delay: idx * 0.05 + 0.6 }}
+                        transition={{
+                          ...animationTransition(1),
+                          delay: idx * 0.05 + 0.6,
+                        }}
                         viewport={animationViewPort}
                       />
                     </div>
@@ -343,7 +384,7 @@ const CV: React.FC = () => {
               transition={{ ...animationTransition(0.6), delay: 0.4 }}
               viewport={animationViewPort}
             >
-              <motion.div 
+              <motion.div
                 className="flex items-center gap-3 mb-10 border-b border-white/10 pb-6"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -354,7 +395,7 @@ const CV: React.FC = () => {
                   whileHover={{ rotate: 360, scale: 1.2 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <Globe className="text-emerald-500 w-7 h-7" />
+                  <Globe className="text-[#CC9933] w-7 h-7" />
                 </motion.div>
                 <h2 className="text-xl font-bold font-display uppercase tracking-widest">
                   Polyglot
@@ -367,12 +408,15 @@ const CV: React.FC = () => {
                     className="flex justify-between items-center p-4 glass rounded-2xl border-white/5"
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ ...animationTransition(0.4), delay: idx * 0.1 + 0.6 }}
+                    transition={{
+                      ...animationTransition(0.4),
+                      delay: idx * 0.1 + 0.6,
+                    }}
                     viewport={animationViewPort}
                     whileHover={{ scale: 1.02, x: 5 }}
                   >
                     <span className="font-bold font-display">{lang.name}</span>
-                    <span className="text-[10px] font-black text-emerald-500 uppercase tracking-widest">
+                    <span className="text-[10px] font-black text-[#CC9933] uppercase tracking-widest">
                       {lang.level}
                     </span>
                   </motion.div>
@@ -381,22 +425,26 @@ const CV: React.FC = () => {
             </motion.section>
 
             {/* Awards/Other */}
-            <motion.section 
-              className="bg-emerald-500/5 p-10 rounded-[40px] border border-emerald-500/20 relative overflow-hidden group"
+            <motion.section
+              className="bg-[#CC9933]/5 p-10 rounded-[40px] border border-[#CC9933]/20 relative overflow-hidden group"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ ...animationTransition(0.6), delay: 0.6 }}
               viewport={animationViewPort}
               whileHover={{ scale: 1.02 }}
             >
-              <motion.div 
+              <motion.div
                 className="absolute top-0 right-0 p-8 opacity-10"
                 animate={{ rotate: [0, 10, -10, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
               >
-                <Award size={64} className="text-emerald-500" />
+                <Award size={64} className="text-[#CC9933]" />
               </motion.div>
-              <motion.h3 
+              <motion.h3
                 className="text-xl font-bold mb-6 font-display uppercase tracking-widest relative z-10"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -409,19 +457,22 @@ const CV: React.FC = () => {
                 {[
                   "Web3 Marketing Expert & Content Curator",
                   "Professional Meme Strategist & Cultivator",
-                  "High-Retention Content Analyst"
+                  "High-Retention Content Analyst",
                 ].map((distinction, idx) => (
-                  <motion.li 
+                  <motion.li
                     key={idx}
                     className="flex items-start gap-4"
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ ...animationTransition(0.4), delay: idx * 0.1 + 0.8 }}
+                    transition={{
+                      ...animationTransition(0.4),
+                      delay: idx * 0.1 + 0.8,
+                    }}
                     viewport={animationViewPort}
                     whileHover={{ x: 5, color: "#a3a3a3" }}
                   >
-                    <motion.div 
-                      className="w-1.5 h-1.5 bg-emerald-500 rounded-full mt-2 shrink-0"
+                    <motion.div
+                      className="w-1.5 h-1.5 bg-[#CC9933] rounded-full mt-2 shrink-0"
                       whileHover={{ scale: 1.5 }}
                     />
                     <span>{distinction}</span>
