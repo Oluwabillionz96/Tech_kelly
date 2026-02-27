@@ -77,7 +77,7 @@ const Footer: React.FC = () => {
                 <a
                   key={i}
                   href="#"
-                  className="p-4 glass rounded-2xl hover:bg-primary hover:text-black transition-colors"
+                  className="p-4 glass rounded-2xl hover:text-primary transition-colors"
                 >
                   <Icon className="w-5 h-5" />
                 </a>
