@@ -99,10 +99,7 @@ export default function SkillBarSection() {
                   <motion.span
                     className="text-2xl font-black"
                     style={{
-                      color:
-                        skill.level === 100
-                          ? "#eab308"
-                          : "var(--color-primary)",
+                      color: skill.level === 100 ? "#eab308" : "#CC9933",
                     }}
                     initial={{ scale: 0, opacity: 0 }}
                     whileInView={{ scale: 1, opacity: 1 }}
@@ -128,7 +125,7 @@ export default function SkillBarSection() {
                       background:
                         skill.level === 100
                           ? "linear-gradient(90deg, #eab308, #f59e0b)"
-                          : "linear-gradient(90deg, var(--color-primary), #b8862e)",
+                          : "linear-gradient(90deg, #CC9933, #b8862e)",
                     }}
                     initial={{ scaleX: 0 }}
                     whileInView={{ scaleX: skill.level / 100 }}
