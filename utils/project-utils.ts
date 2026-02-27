@@ -166,9 +166,9 @@ export const getColorClasses = (currentCategory: { color: string }) => {
   switch (currentCategory.color) {
     case "emerald":
       return {
-        bg: "bg-[#CC9933]/10",
-        text: "text-[#CC9933]",
-        hover: "hover:text-[#CC9933]",
+        bg: "bg-primary/10",
+        text: "text-primary",
+        hover: "hover:text-primary",
       };
     case "blue":
       return {
@@ -184,9 +184,9 @@ export const getColorClasses = (currentCategory: { color: string }) => {
       };
     default:
       return {
-        bg: "bg-[#CC9933]/10",
-        text: "text-[#CC9933]",
-        hover: "hover:text-[#CC9933]",
+        bg: "bg-primary/10",
+        text: "text-primary",
+        hover: "hover:text-primary",
       };
   }
 };

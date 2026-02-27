@@ -142,7 +142,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="w-12 h-12 border-4 border-zinc-700 border-t-[#CC9933] rounded-full animate-spin" />
+            <div className="w-12 h-12 border-4 border-zinc-700 border-t-primary rounded-full animate-spin" />
           </motion.div>
         )}
       </AnimatePresence>
@@ -157,7 +157,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="w-12 h-12 border-4 border-zinc-700 border-t-[#CC9933] rounded-full animate-spin" />
+            <div className="w-12 h-12 border-4 border-zinc-700 border-t-primary rounded-full animate-spin" />
           </motion.div>
         )}
       </AnimatePresence>

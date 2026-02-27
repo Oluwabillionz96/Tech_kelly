@@ -35,7 +35,7 @@ const CV: React.FC = () => {
               Kingsley Etim
             </motion.h1>
             <motion.p
-              className="text-2xl text-[#CC9933] font-bold uppercase tracking-[0.2em] mb-8"
+              className="text-2xl text-primary font-bold uppercase tracking-[0.2em] mb-8"
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ ...animationTransition(0.8), delay: 0.4 }}
@@ -52,21 +52,21 @@ const CV: React.FC = () => {
                 className="flex items-center gap-3"
                 whileHover={{ x: 5, transition: { duration: 0.2 } }}
               >
-                <Mail size={16} className="text-[#CC9933]" />
+                <Mail size={16} className="text-primary" />
                 <span>kerllyboi@gmail.com</span>
               </motion.div>
               <motion.div
                 className="flex items-center gap-3"
                 whileHover={{ x: 5, transition: { duration: 0.2 } }}
               >
-                <Phone size={16} className="text-[#CC9933]" />
+                <Phone size={16} className="text-primary" />
                 <span>+234 812 921 6478</span>
               </motion.div>
               <motion.div
                 className="flex items-center gap-3"
                 whileHover={{ x: 5, transition: { duration: 0.2 } }}
               >
-                <MapPin size={16} className="text-[#CC9933]" />
+                <MapPin size={16} className="text-primary" />
                 <span>Nigeria, Africa</span>
               </motion.div>
             </motion.div>
@@ -79,7 +79,7 @@ const CV: React.FC = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <button className="flex items-center gap-3 bg-white text-black px-10 py-5 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-[#CC9933] transition-colors">
+            <button className="flex items-center gap-3 bg-white text-black px-10 py-5 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-primary transition-colors">
               <Download className="w-5 h-5" />
               View Resume
             </button>
@@ -106,7 +106,7 @@ const CV: React.FC = () => {
                   whileHover={{ rotate: 360, scale: 1.2 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <Briefcase className="text-[#CC9933] w-8 h-8" />
+                  <Briefcase className="text-primary w-8 h-8" />
                 </motion.div>
                 <h2 className="text-3xl font-bold font-display tracking-tight uppercase">
                   Work History
@@ -127,7 +127,7 @@ const CV: React.FC = () => {
                     whileHover={{ x: 5 }}
                   >
                     <motion.div
-                      className="absolute -left-[9px] top-0 w-4 h-4 bg-zinc-900 rounded-full border-4 border-[#CC9933]"
+                      className="absolute -left-[9px] top-0 w-4 h-4 bg-zinc-900 rounded-full border-4 border-primary"
                       initial={{ scale: 0 }}
                       whileInView={{ scale: 1 }}
                       transition={{
@@ -151,7 +151,7 @@ const CV: React.FC = () => {
                         {exp.role}
                       </motion.h3>
                       <motion.span
-                        className="text-[#CC9933] font-black text-[10px] uppercase tracking-[0.2em] glass px-3 py-1 rounded-full"
+                        className="text-primary font-black text-[10px] uppercase tracking-[0.2em] glass px-3 py-1 rounded-full"
                         initial={{ opacity: 0, scale: 0.8 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{
@@ -217,7 +217,7 @@ const CV: React.FC = () => {
                   whileHover={{ rotate: 360, scale: 1.2 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <GraduationCap className="text-[#CC9933] w-8 h-8" />
+                  <GraduationCap className="text-primary w-8 h-8" />
                 </motion.div>
                 <h2 className="text-3xl font-bold font-display tracking-tight uppercase">
                   Academic
@@ -251,7 +251,7 @@ const CV: React.FC = () => {
                     whileHover={{ x: 5 }}
                   >
                     <motion.div
-                      className="absolute -left-[9px] top-0 w-4 h-4 bg-zinc-900 rounded-full border-4 border-[#CC9933]"
+                      className="absolute -left-[9px] top-0 w-4 h-4 bg-zinc-900 rounded-full border-4 border-primary"
                       initial={{ scale: 0 }}
                       whileInView={{ scale: 1 }}
                       transition={{
@@ -274,7 +274,7 @@ const CV: React.FC = () => {
                       {edu.title}
                     </motion.h3>
                     <motion.p
-                      className="text-[#CC9933] font-bold text-xs uppercase tracking-widest mb-2"
+                      className="text-primary font-bold text-xs uppercase tracking-widest mb-2"
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{
@@ -329,7 +329,7 @@ const CV: React.FC = () => {
                   whileHover={{ rotate: 360, scale: 1.2 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <Code className="text-[#CC9933] w-7 h-7" />
+                  <Code className="text-primary w-7 h-7" />
                 </motion.div>
                 <h2 className="text-xl font-bold font-display uppercase tracking-widest">
                   Toolkit
@@ -350,11 +350,11 @@ const CV: React.FC = () => {
                     whileHover={{ x: 5 }}
                   >
                     <div className="flex justify-between text-[10px] font-black uppercase tracking-[0.2em] mb-3">
-                      <span className="text-zinc-400 group-hover:text-[#CC9933] transition-colors">
+                      <span className="text-zinc-400 group-hover:text-primary transition-colors">
                         {skill.name}
                       </span>
                       <motion.span
-                        className="text-[#CC9933]"
+                        className="text-primary"
                         whileHover={{ scale: 1.2 }}
                       >
                         {skill.level}%
@@ -362,7 +362,7 @@ const CV: React.FC = () => {
                     </div>
                     <div className="h-1.5 w-full bg-zinc-900 rounded-full overflow-hidden">
                       <motion.div
-                        className="h-full bg-[#CC9933] rounded-full"
+                        className="h-full bg-primary rounded-full"
                         initial={{ width: 0 }}
                         whileInView={{ width: `${skill.level}%` }}
                         transition={{
@@ -395,7 +395,7 @@ const CV: React.FC = () => {
                   whileHover={{ rotate: 360, scale: 1.2 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <Globe className="text-[#CC9933] w-7 h-7" />
+                  <Globe className="text-primary w-7 h-7" />
                 </motion.div>
                 <h2 className="text-xl font-bold font-display uppercase tracking-widest">
                   Polyglot
@@ -416,7 +416,7 @@ const CV: React.FC = () => {
                     whileHover={{ scale: 1.02, x: 5 }}
                   >
                     <span className="font-bold font-display">{lang.name}</span>
-                    <span className="text-[10px] font-black text-[#CC9933] uppercase tracking-widest">
+                    <span className="text-[10px] font-black text-primary uppercase tracking-widest">
                       {lang.level}
                     </span>
                   </motion.div>
@@ -426,7 +426,7 @@ const CV: React.FC = () => {
 
             {/* Awards/Other */}
             <motion.section
-              className="bg-[#CC9933]/5 p-10 rounded-[40px] border border-[#CC9933]/20 relative overflow-hidden group"
+              className="bg-primary/5 p-10 rounded-[40px] border border-primary/20 relative overflow-hidden group"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ ...animationTransition(0.6), delay: 0.6 }}
@@ -442,7 +442,7 @@ const CV: React.FC = () => {
                   ease: "easeInOut",
                 }}
               >
-                <Award size={64} className="text-[#CC9933]" />
+                <Award size={64} className="text-primary" />
               </motion.div>
               <motion.h3
                 className="text-xl font-bold mb-6 font-display uppercase tracking-widest relative z-10"
@@ -472,7 +472,7 @@ const CV: React.FC = () => {
                     whileHover={{ x: 5, color: "#a3a3a3" }}
                   >
                     <motion.div
-                      className="w-1.5 h-1.5 bg-[#CC9933] rounded-full mt-2 shrink-0"
+                      className="w-1.5 h-1.5 bg-primary rounded-full mt-2 shrink-0"
                       whileHover={{ scale: 1.5 }}
                     />
                     <span>{distinction}</span>

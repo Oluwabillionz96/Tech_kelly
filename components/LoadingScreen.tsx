@@ -42,7 +42,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
           <h1
             className="text-4xl sm:text-6xl md:text-9xl text-center font-black tracking-wider text-transparent leading-none pb-2"
             style={{
-              WebkitTextStroke: "2px #CC9933", // gold
+              WebkitTextStroke: "2px #CC9933",
             }}
           >
             TECH KELLY
@@ -55,7 +55,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
               clipPath: `inset(${100 - fillHeight}% 0 0 0)`,
             }}
           >
-            <h1 className="text-4xl sm:text-6xl md:text-9xl text-center font-black tracking-wider text-[#CC9933] leading-none">
+            <h1 className="text-4xl sm:text-6xl md:text-9xl text-center font-black tracking-wider text-primary leading-none">
               TECH KELLY
             </h1>
           </div>
@@ -67,13 +67,13 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
         {/* Progress Bar */}
         <div className="w-full bg-zinc-800 rounded-full h-2 overflow-hidden">
           <div
-            className="h-full bg-[#CC9933] transition-all duration-100 ease-out rounded-full"
+            className="h-full bg-primary transition-all duration-100 ease-out rounded-full"
             style={{ width: `${progress}%` }}
           />
         </div>
 
         {/* Progress Percentage */}
-        <div className="text-[#CC9933] text-xl font-bold tabular-nums">
+        <div className="text-primary text-xl font-bold tabular-nums">
           {progress}%
         </div>
 

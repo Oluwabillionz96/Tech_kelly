@@ -25,7 +25,7 @@ const ProjectCategory: React.FC = () => {
           <h1 className="text-4xl font-bold text-white mb-4">
             Category Not Found
           </h1>
-          <Link to="/projects" className="text-[#CC9933] hover:underline">
+          <Link to="/projects" className="text-primary hover:underline">
             Back to Projects
           </Link>
         </div>
@@ -156,7 +156,7 @@ const ProjectCategory: React.FC = () => {
                 </>
               ) : (
                 <div
-                  className="group bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-2xl overflow-hidden hover:border-[#CC9933]/30 transition-all duration-300 cursor-pointer"
+                  className="group bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-2xl overflow-hidden hover:border-primary/30 transition-all duration-300 cursor-pointer"
                   onClick={() => {
                     setLightboxIndex(idx);
                     setLightboxOpen(true);
@@ -170,7 +170,7 @@ const ProjectCategory: React.FC = () => {
                     />
                   </div>
                   <div className="p-6">
-                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#CC9933] transition-colors">
+                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-primary transition-colors">
                       {project.title}
                     </h3>
                     <div className="flex flex-wrap gap-2">

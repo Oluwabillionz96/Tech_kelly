@@ -30,7 +30,10 @@ const Navbar: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         <Link to="/" className="flex items-center gap-3 group">
-          <Logo size={40} className="transition-transform group-hover:scale-110" />
+          <Logo
+            size={40}
+            className="transition-transform group-hover:scale-110"
+          />
           <span className="text-xl font-bold tracking-[0.2em] font-display uppercase">
             <span className="hidden md:inline">Tech</span> Kelly
           </span>
@@ -42,21 +45,21 @@ const Navbar: React.FC = () => {
             <Link
               key={link.path}
               to={link.path}
-              className={`text-xs font-bold tracking-[0.2em] uppercase transition-colors hover:text-[#CC9933] relative py-2 ${
+              className={`text-xs font-bold tracking-[0.2em] uppercase transition-colors hover:text-primary relative py-2 ${
                 location.pathname === link.path
-                  ? "text-[#CC9933]"
+                  ? "text-primary"
                   : "text-zinc-500"
               }`}
             >
               {link.name}
               {location.pathname === link.path && (
-                <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#CC9933]"></span>
+                <span className="absolute bottom-0 left-0 w-full h-[2px] bg-primary"></span>
               )}
             </Link>
           ))}
           <a
             href="mailto:kerllyboi@gmail.com"
-            className="bg-[#CC9933] text-black px-6 py-2.5 font-bold rounded-full text-xs uppercase tracking-widest hover:bg-[#CC9933]/80 transition-colors"
+            className="bg-primary text-black px-6 py-2.5 font-bold rounded-full text-xs uppercase tracking-widest hover:bg-primary/80 transition-colors"
           >
             Let's Talk
           </a>
@@ -79,14 +82,14 @@ const Navbar: React.FC = () => {
               key={link.path}
               to={link.path}
               onClick={() => setIsOpen(false)}
-              className="text-4xl font-bold font-display tracking-tighter hover:text-[#CC9933] transition-colors"
+              className="text-4xl font-bold font-display tracking-tighter hover:text-primary transition-colors"
             >
               {link.name}
             </Link>
           ))}
           <a
             href="mailto:kerllyboi@gmail.com"
-            className="mt-6 w-full bg-[#CC9933] text-black text-center py-5 rounded-2xl font-bold text-xl uppercase tracking-widest"
+            className="mt-6 w-full bg-primary text-black text-center py-5 rounded-2xl font-bold text-xl uppercase tracking-widest"
           >
             Hire Me
           </a>
