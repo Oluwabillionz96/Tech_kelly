@@ -78,7 +78,7 @@ const ProjectCategory: React.FC = () => {
 
         {/* Projects Grid */}
         <div
-          className={`grid grid-cols-1 ${isVideo ? "md:grid-cols-2" : "md:grid-cols-2 lg:grid-cols-3"} gap-8`}
+          className={`grid grid-cols-1 ${isVideo ? "md:grid-cols-2  gap-8" : "md:grid-cols-3 lg:grid-cols-4 gap-4 "}`}
         >
           {currentCategory.projects.map((project: any, idx: number) => (
             <motion.div
@@ -156,16 +156,17 @@ const ProjectCategory: React.FC = () => {
                 </>
               ) : (
                 <div
-                  className="group bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-2xl overflow-hidden hover:border-primary/30 transition-all duration-300 cursor-pointer"
+                  className={`group bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 ${isVideo ? "rounded-2xl" : "rounded-lg"} overflow-hidden hover:border-primary/30 transition-all duration-300 cursor-pointer`}
                   onClick={() => {
                     setLightboxIndex(idx);
                     setLightboxOpen(true);
                   }}
                 >
-                  <div className="relative aspect-video overflow-hidden">
+                  <div className="relative aspect-video cursor-pointer overflow-hidden">
                     <img
                       src={project.image}
                       alt={`Project ${project.id}`}
+                      loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>
