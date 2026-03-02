@@ -8,7 +8,11 @@ interface ImageLightboxProps {
   onClose: () => void;
 }
 
-const ImageLightbox: React.FC<ImageLightboxProps> = ({ images, initialIndex, onClose }) => {
+const ImageLightbox: React.FC<ImageLightboxProps> = ({
+  images,
+  initialIndex,
+  onClose,
+}) => {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [direction, setDirection] = useState(0);
 
@@ -45,16 +49,16 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ images, initialIndex, onC
   const variants = {
     enter: (direction: number) => ({
       x: direction > 0 ? 1000 : -1000,
-      opacity: 0
+      opacity: 0,
     }),
     center: {
       x: 0,
-      opacity: 1
+      opacity: 1,
     },
     exit: (direction: number) => ({
       x: direction < 0 ? 1000 : -1000,
-      opacity: 0
-    })
+      opacity: 0,
+    }),
   };
 
   const currentImage = images[currentIndex];
@@ -74,6 +78,42 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ images, initialIndex, onC
       >
         <X className="w-6 h-6 text-white" />
       </button>
+
+      {/* Circular Progress Counter */}
+      <div className="absolute top-6 left-6 z-50">
+        <div className="relative w-16 h-16">
+          {/* Background circle */}
+          <svg className="w-16 h-16 transform -rotate-90">
+            <circle
+              cx="32"
+              cy="32"
+              r="28"
+              stroke="rgba(255, 255, 255, 0.1)"
+              strokeWidth="4"
+              fill="none"
+            />
+            {/* Progress circle */}
+            <circle
+              cx="32"
+              cy="32"
+              r="28"
+              stroke="var(--color-primary)"
+              strokeWidth="4"
+              fill="none"
+              strokeDasharray={`${2 * Math.PI * 28}`}
+              strokeDashoffset={`${2 * Math.PI * 28 * (1 - (currentIndex + 1) / images.length)}`}
+              strokeLinecap="round"
+              className="transition-all duration-300"
+            />
+          </svg>
+          {/* Counter text */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="text-white font-bold text-xs">
+              {currentIndex + 1}/{images.length}
+            </span>
+          </div>
+        </div>
+      </div>
 
       {/* Previous Button - Desktop */}
       <button
@@ -112,7 +152,7 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({ images, initialIndex, onC
             exit="exit"
             transition={{
               x: { type: "spring", stiffness: 300, damping: 30 },
-              opacity: { duration: 0.2 }
+              opacity: { duration: 0.2 },
             }}
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}

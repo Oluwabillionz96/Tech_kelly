@@ -165,24 +165,9 @@ const ProjectCategory: React.FC = () => {
                   <div className="relative aspect-video overflow-hidden">
                     <img
                       src={project.image}
-                      alt={project.title}
+                      alt={`Project ${project.id}`}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-primary transition-colors">
-                      {project.title}
-                    </h3>
-                    <div className="flex flex-wrap gap-2">
-                      {project.tags.map((tag: string) => (
-                        <span
-                          key={tag}
-                          className={`px-2 py-1 ${colors.bg} ${colors.text} rounded-md text-xs font-bold`}
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
                   </div>
                 </div>
               )}

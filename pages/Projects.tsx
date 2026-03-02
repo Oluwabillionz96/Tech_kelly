@@ -13,11 +13,11 @@ const Projects: React.FC = () => {
         "Visual identity, brand design, and stunning graphics for social media and marketing campaigns.",
       color: "emerald",
       projects: [
-        "DxSale Visual Identity",
-        "Cutoshi Brand Visuals",
+        " Visual Identities",
+        " Brand Visuals",
         "Social Media Graphics",
       ],
-      stats: { count: "15+", label: "Projects" },
+      stats: { count: "50+", label: "Projects" },
       link: "/projects/graphics",
     },
     {
