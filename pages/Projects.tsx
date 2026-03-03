@@ -28,7 +28,7 @@ const Projects: React.FC = () => {
         "Professional video editing, content curation, and high-retention video production for various platforms.",
       color: "blue",
       projects: ["YouTube Content", "Educational Series", "Promotional Videos"],
-      stats: { count: "30+", label: "Videos" },
+      stats: { count: "6", label: "Videos" },
       link: "/projects/video-edits",
     },
     {

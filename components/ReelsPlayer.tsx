@@ -197,7 +197,8 @@ const ReelsPlayer: React.FC<ReelsPlayerProps> = ({
               loop
               playsInline
               preload="auto"
-              onClick={(e) => handleVideoClick(e.currentTarget)}
+              controls={!isMobile}
+              onClick={(e) => !isMobile ? undefined : handleVideoClick(e.currentTarget)}
             />
 
             {/* Play Button Overlay (when paused) */}
@@ -218,7 +219,7 @@ const ReelsPlayer: React.FC<ReelsPlayerProps> = ({
             </AnimatePresence>
 
             {/* Video Info Overlay */}
-            <div className="absolute bottom-0 left-0 right-0 p-6 bg-linear-to-t from-black/80 via-black/40 to-transparent">
+            {/* <div className="absolute bottom-0 left-0 right-0 p-6 bg-linear-to-t from-black/80 via-black/40 to-transparent">
               <h3 className="text-white text-lg font-bold mb-2">
                 {videos[currentIndex].title}
               </h3>
@@ -232,7 +233,7 @@ const ReelsPlayer: React.FC<ReelsPlayerProps> = ({
                   </span>
                 ))}
               </div>
-            </div>
+            </div> */}
             <div className="w-full absolute px-8 top-1/2 justify-between md:flex hidden  items-center">
               <button
                 onClick={goToPrev}
@@ -297,7 +298,7 @@ const ReelsPlayer: React.FC<ReelsPlayerProps> = ({
           transition={{ delay: 3, duration: 1 }}
         >
           {isMobile
-            ? "Tap video to play/pause"
+            ? "Tap video to play/pause • Swipe up/down to navigate"
             : "Click video to play/pause • Use arrow keys to navigate"}
         </motion.div>
       </div>
