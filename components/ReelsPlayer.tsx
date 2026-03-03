@@ -5,7 +5,7 @@ import {
   PanInfo,
   useMotionValue,
 } from "framer-motion";
-import { X, Play, ChevronUp, ChevronDown } from "lucide-react";
+import { X, Play, ChevronLeft, ChevronRight } from "lucide-react";
 
 interface VideoProject {
   id: number;
@@ -29,9 +29,20 @@ const ReelsPlayer: React.FC<ReelsPlayerProps> = ({
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [direction, setDirection] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
   const y = useMotionValue(0);
+
+  // Detect mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   // Preload adjacent videos
   useEffect(() => {
@@ -76,6 +87,18 @@ const ReelsPlayer: React.FC<ReelsPlayerProps> = ({
       document.body.style.overflow = "unset";
     };
   }, []);
+
+  // Keyboard navigation for desktop
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") goToNext();
+      if (e.key === "ArrowLeft") goToPrev();
+      if (e.key === "Escape") onClose();
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [currentIndex]);
 
   const goToNext = () => {
     setDirection(1);
@@ -143,14 +166,23 @@ const ReelsPlayer: React.FC<ReelsPlayerProps> = ({
             key={currentIndex}
             custom={direction}
             className="absolute inset-0 flex items-center justify-center"
-            drag="y"
+            drag={isMobile ? "y" : false}
             dragConstraints={{ top: 0, bottom: 0 }}
             dragElastic={0.1}
-            onDragEnd={handleDragEnd}
-            initial={{ y: direction > 0 ? "100%" : "-100%", opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: direction > 0 ? "-100%" : "100%", opacity: 0 }}
+            onDragEnd={isMobile ? handleDragEnd : undefined}
+            initial={
+              isMobile
+                ? { y: direction > 0 ? "100%" : "-100%", opacity: 0 }
+                : { x: direction > 0 ? "100%" : "-100%", opacity: 0 }
+            }
+            animate={isMobile ? { y: 0, opacity: 1 } : { x: 0, opacity: 1 }}
+            exit={
+              isMobile
+                ? { y: direction > 0 ? "-100%" : "100%", opacity: 0 }
+                : { x: direction > 0 ? "-100%" : "100%", opacity: 0 }
+            }
             transition={{
+              x: { type: "spring", stiffness: 300, damping: 35 },
               y: { type: "spring", stiffness: 300, damping: 35 },
               opacity: { duration: 0.2 },
             }}
@@ -186,7 +218,7 @@ const ReelsPlayer: React.FC<ReelsPlayerProps> = ({
             </AnimatePresence>
 
             {/* Video Info Overlay */}
-            {/* <div className="absolute bottom-0 left-0 right-0 p-6 bg-linear-to-t from-black/80 via-black/40 to-transparent">
+            <div className="absolute bottom-0 left-0 right-0 p-6 bg-linear-to-t from-black/80 via-black/40 to-transparent">
               <h3 className="text-white text-lg font-bold mb-2">
                 {videos[currentIndex].title}
               </h3>
@@ -200,27 +232,57 @@ const ReelsPlayer: React.FC<ReelsPlayerProps> = ({
                   </span>
                 ))}
               </div>
-            </div> */}
-            <div className="h-full absolute right-2/10 md:flex hidden justify-center items-center flex-col gap-0">
+            </div>
+            <div className="w-full absolute px-8 top-1/2 justify-between md:flex hidden  items-center">
               <button
                 onClick={goToPrev}
-                className="flex -translate-y-1/2  w-12 h-12 items-center justify-center  backdrop-blur-sm hover:bg-white/70 cursor-pointer rounded-full transition-colors"
+                className="flex -translate-y-1/2 w-12 h-12 items-center justify-center bg-black/50 backdrop-blur-sm hover:bg-black/70 cursor-pointer rounded-full transition-colors"
               >
-                <ChevronUp className="w-6 h-6 text-white" />
+                <ChevronLeft className="w-6 h-6 text-white" />
               </button>
               <button
                 onClick={goToNext}
-                className="flex  -translate-y-1/2  w-12 h-12 items-center justify-center  backdrop-blur-sm hover:bg-white/70 rounded-full cursor-pointer transition-colors"
+                className="flex -translate-y-1/2 w-12 h-12 items-center justify-center bg-black/50 backdrop-blur-sm hover:bg-black/70 rounded-full cursor-pointer transition-colors"
               >
-                <ChevronDown className="w-6 h-6 text-white" />
+                <ChevronRight className="w-6 h-6 text-white" />
               </button>
             </div>
+            {/* <div className="h-full absolute right-6 top-1/2 md:flex hidden justify-center items-center"></div> */}
 
-            {/* Counter Badge */}
-            <div className="absolute bottom-24 right-4 w-12 h-12 rounded-full bg-black/60 backdrop-blur-sm flex items-center justify-center border border-white/20">
-              <span className="text-white text-xs font-bold">
-                {currentIndex + 1}/{videos.length}
-              </span>
+            {/* Circular Progress Counter */}
+            <div className="absolute top-6 left-6 z-50">
+              <div className="relative w-16 h-16">
+                {/* Background circle */}
+                <svg className="w-16 h-16 transform -rotate-90">
+                  <circle
+                    cx="32"
+                    cy="32"
+                    r="28"
+                    stroke="rgba(255, 255, 255, 0.1)"
+                    strokeWidth="4"
+                    fill="none"
+                  />
+                  {/* Progress circle */}
+                  <circle
+                    cx="32"
+                    cy="32"
+                    r="28"
+                    stroke="var(--color-primary)"
+                    strokeWidth="4"
+                    fill="none"
+                    strokeDasharray={`${2 * Math.PI * 28}`}
+                    strokeDashoffset={`${2 * Math.PI * 28 * (1 - (currentIndex + 1) / videos.length)}`}
+                    strokeLinecap="round"
+                    className="transition-all duration-300"
+                  />
+                </svg>
+                {/* Counter text */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-white font-bold text-xs">
+                    {currentIndex + 1}/{videos.length}
+                  </span>
+                </div>
+              </div>
             </div>
           </motion.div>
         </AnimatePresence>
@@ -234,7 +296,9 @@ const ReelsPlayer: React.FC<ReelsPlayerProps> = ({
           animate={{ opacity: 0 }}
           transition={{ delay: 3, duration: 1 }}
         >
-          Tap video to play/pause
+          {isMobile
+            ? "Tap video to play/pause"
+            : "Click video to play/pause • Use arrow keys to navigate"}
         </motion.div>
       </div>
     </motion.div>
