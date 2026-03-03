@@ -89,16 +89,31 @@ const ProjectCategory: React.FC = () => {
             >
               {isVideo ? (
                 <>
-                  {/* Desktop: Show full video player */}
-                  <div className="hidden md:block">
-                    <VideoPlayer
-                      src={project.videoUrl}
-                      poster={project.poster}
-                      title={project.title}
-                      controls={true}
-                    />
+                  {/* Desktop: Show thumbnail with play button that opens overlay */}
+                  <div
+                    className="hidden md:block group cursor-pointer"
+                    onClick={() => {
+                      setReelsIndex(idx);
+                      setReelsOpen(true);
+                    }}
+                  >
+                    <div className="relative aspect-video rounded-2xl overflow-hidden bg-zinc-900">
+                      <img
+                        src={project.poster}
+                        alt={project.title}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                      {/* Play Button Overlay */}
+                      <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-colors">
+                        <div className="w-20 h-20 flex items-center justify-center bg-white/90 group-hover:bg-white rounded-full transition-all group-hover:scale-110">
+                          <Play
+                            className={`w-10 h-10 ${colors.text} fill-current ml-1`}
+                          />
+                        </div>
+                      </div>
+                    </div>
                     <div className="mt-4">
-                      <h3 className="text-xl font-bold text-white mb-3">
+                      <h3 className="text-xl font-bold text-white mb-3 group-hover:text-primary transition-colors">
                         {project.title}
                       </h3>
                       <div className="flex flex-wrap gap-2">
@@ -194,7 +209,7 @@ const ProjectCategory: React.FC = () => {
           )}
         </AnimatePresence>
 
-        {/* Video Modal */}
+        {/* Video Modal - Both Desktop and Mobile */}
         <AnimatePresence>
           {reelsOpen && isVideo && (
             <ReelsPlayer

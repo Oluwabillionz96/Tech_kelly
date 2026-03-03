@@ -5,7 +5,7 @@ import {
   PanInfo,
   useMotionValue,
 } from "framer-motion";
-import { X, Play } from "lucide-react";
+import { X, Play, ChevronUp, ChevronDown } from "lucide-react";
 
 interface VideoProject {
   id: number;
@@ -134,6 +134,8 @@ const ReelsPlayer: React.FC<ReelsPlayerProps> = ({
         <X className="w-5 h-5 text-white" />
       </button>
 
+      {/* Desktop Navigation Buttons */}
+
       {/* Video Container */}
       <div className="relative w-full h-full overflow-hidden">
         <AnimatePresence initial={false} custom={direction}>
@@ -184,7 +186,7 @@ const ReelsPlayer: React.FC<ReelsPlayerProps> = ({
             </AnimatePresence>
 
             {/* Video Info Overlay */}
-            <div className="absolute bottom-0 left-0 right-0 p-6 bg-linear-to-t from-black/80 via-black/40 to-transparent">
+            {/* <div className="absolute bottom-0 left-0 right-0 p-6 bg-linear-to-t from-black/80 via-black/40 to-transparent">
               <h3 className="text-white text-lg font-bold mb-2">
                 {videos[currentIndex].title}
               </h3>
@@ -198,6 +200,20 @@ const ReelsPlayer: React.FC<ReelsPlayerProps> = ({
                   </span>
                 ))}
               </div>
+            </div> */}
+            <div className="h-full absolute right-2/10 md:flex hidden justify-center items-center flex-col gap-0">
+              <button
+                onClick={goToPrev}
+                className="flex -translate-y-1/2  w-12 h-12 items-center justify-center  backdrop-blur-sm hover:bg-white/70 cursor-pointer rounded-full transition-colors"
+              >
+                <ChevronUp className="w-6 h-6 text-white" />
+              </button>
+              <button
+                onClick={goToNext}
+                className="flex  -translate-y-1/2  w-12 h-12 items-center justify-center  backdrop-blur-sm hover:bg-white/70 rounded-full cursor-pointer transition-colors"
+              >
+                <ChevronDown className="w-6 h-6 text-white" />
+              </button>
             </div>
 
             {/* Counter Badge */}
