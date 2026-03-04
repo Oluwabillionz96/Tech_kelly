@@ -53,39 +53,48 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
       }
     };
 
+    // Define handlers in outer scope
+    const handlePlay = () => {
+      window.dispatchEvent(new CustomEvent('video-play', { detail: { id: videoId.current } }));
+    };
+    
+    const handleCanPlay = () => {
+      setIsReady(true);
+    };
+
     // Listen for play events from other videos
     window.addEventListener('video-play', handleOtherVideoPlay);
 
-    // Find the actual video element and listen to its play event
+    // Find the actual video element and attach listeners
     const timer = setTimeout(() => {
-      const videoElement = plyrRef.current?.plyr;
-      if (videoElement) {
-        const handlePlay = () => {
-          window.dispatchEvent(new CustomEvent('video-play', { detail: { id: videoId.current } }));
-        };
-        
-        const handleCanPlay = () => {
-          setIsReady(true);
-        };
-        
-        videoElement.addEventListener('play', handlePlay);
-        videoElement.addEventListener('canplay', handleCanPlay);
-        videoElement.addEventListener('loadeddata', handleCanPlay);
-        
-        // Store cleanup function
-        return () => {
-          videoElement.removeEventListener('play', handlePlay);
-          videoElement.removeEventListener('canplay', handleCanPlay);
-          videoElement.removeEventListener('loadeddata', handleCanPlay);
-        };
+      const plyrInstance = plyrRef.current?.plyr;
+      if (plyrInstance) {
+        // Access the underlying media element through Plyr's elements property
+        const videoElement = (plyrInstance as any).elements?.original || (plyrInstance as any).media;
+        if (videoElement) {
+          videoElement.addEventListener('play', handlePlay);
+          videoElement.addEventListener('canplay', handleCanPlay);
+          videoElement.addEventListener('loadeddata', handleCanPlay);
+        }
       }
     }, 100);
 
     return () => {
       clearTimeout(timer);
       window.removeEventListener('video-play', handleOtherVideoPlay);
+      
+      // Remove listeners from the media element
+      const plyrInstance = plyrRef.current?.plyr;
+      if (plyrInstance) {
+        const videoElement = (plyrInstance as any).elements?.original || (plyrInstance as any).media;
+        if (videoElement) {
+          videoElement.removeEventListener('play', handlePlay);
+          videoElement.removeEventListener('canplay', handleCanPlay);
+          videoElement.removeEventListener('loadeddata', handleCanPlay);
+        }
+      }
     };
-  }, []);
+  }, [src]);
 
   const plyrOptions = {
     controls: controls
