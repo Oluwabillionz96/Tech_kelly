@@ -14,10 +14,11 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({
   onClose,
 }) => {
   // Guard against empty arrays and invalid initialIndex
-  const safeInitialIndex = images.length === 0 
-    ? 0 
-    : Math.max(0, Math.min(initialIndex, images.length - 1));
-  
+  const safeInitialIndex =
+    images.length === 0
+      ? 0
+      : Math.max(0, Math.min(initialIndex, images.length - 1));
+
   const [currentIndex, setCurrentIndex] = useState(safeInitialIndex);
   const [direction, setDirection] = useState(0);
 
@@ -77,10 +78,15 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Image Viewer"
     >
       {/* Close Button */}
       <button
         onClick={onClose}
+        type="button"
+        aria-label="Close Image Viewer"
         className="absolute top-6 right-6 z-50 w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full transition-colors"
       >
         <X className="w-6 h-6 text-white" />
@@ -128,6 +134,8 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({
           e.stopPropagation();
           goToPrev();
         }}
+        type="button"
+        aria-label="Previous Image"
         className="hidden md:flex absolute left-6 z-50 w-12 h-12 items-center justify-center bg-white/10 hover:bg-white/20 rounded-full transition-colors"
       >
         <ChevronLeft className="w-6 h-6 text-white" />
@@ -139,6 +147,8 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({
           e.stopPropagation();
           goToNext();
         }}
+        type="button"
+        aria-label="Next Image"
         className="hidden md:flex absolute right-6 z-50 w-12 h-12 items-center justify-center bg-white/10 hover:bg-white/20 rounded-full transition-colors"
       >
         <ChevronRight className="w-6 h-6 text-white" />
