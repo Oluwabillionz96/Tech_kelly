@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Play } from "lucide-react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import VideoPlayer from "../components/VideoPlayer";
 import ImageLightbox from "../components/ImageLightbox";
 import ReelsPlayer from "../components/ReelsPlayer";
@@ -9,6 +9,7 @@ import { categoryConfig, getColorClasses } from "@/utils/project-utils";
 
 const ProjectCategory: React.FC = () => {
   const { category } = useParams<{ category: string }>();
+  const navigate = useNavigate();
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [reelsOpen, setReelsOpen] = useState(false);
@@ -42,17 +43,17 @@ const ProjectCategory: React.FC = () => {
     <div className="pt-32 pb-20 min-h-screen">
       <div className="max-w-7xl mx-auto px-6">
         {/* Back Button */}
-        <Link to="/projects">
-          <motion.button
-            className={`flex items-center gap-2 text-zinc-400 ${colors.hover} transition-colors mb-8`}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            whileHover={{ x: -5 }}
-          >
-            <ArrowLeft className="w-5 h-5" />
-            <span className="font-bold">Back to Projects</span>
-          </motion.button>
-        </Link>
+        <motion.button
+          className={`flex items-center gap-2 text-zinc-400 ${colors.hover} transition-colors mb-8`}
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          whileHover={{ x: -5 }}
+          onClick={() => navigate("/projects")}
+          aria-label="Back to Projects"
+        >
+          <ArrowLeft className="w-5 h-5" />
+          <span className="font-bold">Back to Projects</span>
+        </motion.button>
 
         {/* Header */}
         <motion.div
@@ -92,10 +93,20 @@ const ProjectCategory: React.FC = () => {
                   {/* Desktop: Show thumbnail with play button that opens overlay */}
                   <div
                     className="hidden md:block group cursor-pointer"
+                    role="button"
+                    tabIndex={0}
                     onClick={() => {
                       setReelsIndex(idx);
                       setReelsOpen(true);
                     }}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        setReelsIndex(idx);
+                        setReelsOpen(true);
+                      }
+                    }}
+                    aria-label={`Play video: ${project.title}`}
                   >
                     <div className="relative aspect-video rounded-2xl overflow-hidden bg-zinc-900">
                       <img
@@ -132,10 +143,20 @@ const ProjectCategory: React.FC = () => {
                   {/* Mobile: Show thumbnail with play button */}
                   <div
                     className="md:hidden group cursor-pointer"
+                    role="button"
+                    tabIndex={0}
                     onClick={() => {
                       setReelsIndex(idx);
                       setReelsOpen(true);
                     }}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        setReelsIndex(idx);
+                        setReelsOpen(true);
+                      }
+                    }}
+                    aria-label={`Play video: ${project.title}`}
                   >
                     <div className="relative aspect-video rounded-2xl overflow-hidden bg-zinc-900">
                       <img
@@ -172,10 +193,20 @@ const ProjectCategory: React.FC = () => {
               ) : (
                 <div
                   className={`group bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 ${isVideo ? "rounded-2xl" : "rounded-lg"} overflow-hidden hover:border-primary/30 transition-all duration-300 cursor-pointer`}
+                  role="button"
+                  tabIndex={0}
                   onClick={() => {
                     setLightboxIndex(idx);
                     setLightboxOpen(true);
                   }}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      setLightboxIndex(idx);
+                      setLightboxOpen(true);
+                    }
+                  }}
+                  aria-label={`View image: ${project.title || `Project ${project.id}`}`}
                 >
                   <div className="relative aspect-video cursor-pointer overflow-hidden">
                     <img
