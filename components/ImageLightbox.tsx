@@ -71,6 +71,11 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({
 
   const currentImage = images[currentIndex];
 
+  // Guard against rendering when no images
+  if (images.length === 0 || !currentImage) {
+    return null;
+  }
+
   return (
     <motion.div
       className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center"
@@ -174,7 +179,8 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={1}
-            onDragEnd={(e, { offset, velocity }) => {
+            onDragEnd={(_, { offset, velocity }) => {
+              if (images.length === 0) return;
               const swipe = Math.abs(offset.x) * velocity.x;
 
               if (swipe < -10000) {

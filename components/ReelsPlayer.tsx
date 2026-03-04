@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import {
   motion,
   AnimatePresence,
@@ -55,30 +55,6 @@ const ReelsPlayer: React.FC<ReelsPlayerProps> = ({
   }, [currentIndex, videos.length]);
 
   // Play current video, pause others, and handle auto-advance
-  useEffect(() => {
-    videoRefs.current.forEach((video, idx) => {
-      if (video) {
-        if (idx === currentIndex) {
-          video.play().catch(() => {
-            // Auto-play might be blocked, user needs to interact
-          });
-
-          // Auto-advance to next video when current one ends
-          const handleEnded = () => {
-            goToNext();
-          };
-          video.addEventListener("ended", handleEnded);
-
-          return () => {
-            video.removeEventListener("ended", handleEnded);
-          };
-        } else {
-          video.pause();
-          video.currentTime = 0;
-        }
-      }
-    });
-  }, [currentIndex]);
 
   // Prevent body scroll
   useEffect(() => {
@@ -87,6 +63,21 @@ const ReelsPlayer: React.FC<ReelsPlayerProps> = ({
       document.body.style.overflow = "unset";
     };
   }, []);
+
+   const goToNext = useCallback(
+     function () {
+       setDirection(1);
+       setIsPaused(false);
+       setCurrentIndex((prev) => (prev + 1) % videos.length);
+     },
+     [videos.length],
+   );
+
+   const goToPrev = useCallback(() => {
+     setDirection(-1);
+     setIsPaused(false);
+     setCurrentIndex((prev) => (prev - 1 + videos.length) % videos.length);
+   }, [videos.length]);
 
   // Keyboard navigation for desktop
   useEffect(() => {
@@ -98,19 +89,9 @@ const ReelsPlayer: React.FC<ReelsPlayerProps> = ({
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [currentIndex]);
+  }, [goToNext, goToPrev, onClose]);
 
-  const goToNext = () => {
-    setDirection(1);
-    setIsPaused(false);
-    setCurrentIndex((prev) => (prev + 1) % videos.length);
-  };
-
-  const goToPrev = () => {
-    setDirection(-1);
-    setIsPaused(false);
-    setCurrentIndex((prev) => (prev - 1 + videos.length) % videos.length);
-  };
+ 
 
   const handleDragEnd = (
     _: MouseEvent | TouchEvent | PointerEvent,
@@ -140,6 +121,34 @@ const ReelsPlayer: React.FC<ReelsPlayerProps> = ({
       setIsPaused(true);
     }
   };
+
+  useEffect(() => {
+    const currentVideo = videoRefs.current[currentIndex];
+
+    // Pause all other videos
+    videoRefs.current.forEach((video, idx) => {
+      if (video && idx !== currentIndex) {
+        video.pause();
+        video.currentTime = 0;
+      }
+    });
+
+    if (!currentVideo) return;
+
+    currentVideo.play().catch(() => {
+      // Auto-play might be blocked, user needs to interact
+    });
+
+    const handleEnded = () => {
+      goToNext();
+    };
+
+    currentVideo.addEventListener("ended", handleEnded);
+
+    return () => {
+      currentVideo.removeEventListener("ended", handleEnded);
+    };
+  }, [currentIndex, goToNext]);
 
   return (
     <motion.div
@@ -198,7 +207,9 @@ const ReelsPlayer: React.FC<ReelsPlayerProps> = ({
               playsInline
               preload="auto"
               controls={!isMobile}
-              onClick={(e) => !isMobile ? undefined : handleVideoClick(e.currentTarget)}
+              onClick={(e) =>
+                !isMobile ? undefined : handleVideoClick(e.currentTarget)
+              }
             />
 
             {/* Play Button Overlay (when paused) */}
