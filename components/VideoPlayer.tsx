@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Plyr } from "plyr-react";
+import { Plyr, type APITypes } from "plyr-react";
 import "plyr-react/plyr.css";
 import "./VideoPlayer.css";
 import { motion, AnimatePresence } from "framer-motion";
@@ -27,7 +27,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
 }) => {
   const [isOffline, setIsOffline] = useState(!navigator.onLine);
   const [isReady, setIsReady] = useState(false);
-  const plyrRef = React.useRef<any>(null);
+  const plyrRef = React.useRef<APITypes>(null);
   const videoId = React.useRef(`video-${Math.random().toString(36).substring(2, 11)}`);
 
   useEffect(() => {
@@ -58,7 +58,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
 
     // Find the actual video element and listen to its play event
     const timer = setTimeout(() => {
-      const videoElement = plyrRef.current?.plyr?.media;
+      const videoElement = plyrRef.current?.plyr;
       if (videoElement) {
         const handlePlay = () => {
           window.dispatchEvent(new CustomEvent('video-play', { detail: { id: videoId.current } }));

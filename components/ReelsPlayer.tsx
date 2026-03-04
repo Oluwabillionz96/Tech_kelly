@@ -203,7 +203,7 @@ const ReelsPlayer: React.FC<ReelsPlayerProps> = ({
               src={videos[currentIndex].videoUrl}
               poster={videos[currentIndex].poster}
               className="w-full h-full object-contain bg-black"
-              loop
+              // loop
               playsInline
               preload="auto"
               controls={!isMobile}
