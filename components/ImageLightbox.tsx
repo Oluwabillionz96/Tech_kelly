@@ -13,15 +13,22 @@ const ImageLightbox: React.FC<ImageLightboxProps> = ({
   initialIndex,
   onClose,
 }) => {
-  const [currentIndex, setCurrentIndex] = useState(initialIndex);
+  // Guard against empty arrays and invalid initialIndex
+  const safeInitialIndex = images.length === 0 
+    ? 0 
+    : Math.max(0, Math.min(initialIndex, images.length - 1));
+  
+  const [currentIndex, setCurrentIndex] = useState(safeInitialIndex);
   const [direction, setDirection] = useState(0);
 
   const goToNext = () => {
+    if (images.length === 0) return;
     setDirection(1);
     setCurrentIndex((prev) => (prev + 1) % images.length);
   };
 
   const goToPrev = () => {
+    if (images.length === 0) return;
     setDirection(-1);
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
   };
