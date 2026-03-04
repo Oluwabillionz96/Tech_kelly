@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import Logo from "./Logo";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,21 +24,16 @@ const Navbar: React.FC = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all border-emerald-500 duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled ? "bg-black border-b py-4" : "py-8"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         <Link to="/" className="flex items-center gap-3 group">
-          <div className="relative">
-            <div className="w-10 h-10 rounded-xl overflow-hidden border border-white/10 relative z-10">
-              <img
-                src="/tech_kelly.jpg"
-                alt="Tech Kelly"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
+          <Logo
+            size={40}
+            className="transition-transform group-hover:scale-110"
+          />
           <span className="text-xl font-bold tracking-[0.2em] font-display uppercase">
             <span className="hidden md:inline">Tech</span> Kelly
           </span>
@@ -49,21 +45,21 @@ const Navbar: React.FC = () => {
             <Link
               key={link.path}
               to={link.path}
-              className={`text-xs font-bold tracking-[0.2em] uppercase transition-colors hover:text-emerald-400 relative py-2 ${
+              className={`text-xs font-bold tracking-[0.2em] uppercase transition-colors hover:text-primary relative py-2 ${
                 location.pathname === link.path
-                  ? "text-emerald-500"
+                  ? "text-primary"
                   : "text-zinc-500"
               }`}
             >
               {link.name}
               {location.pathname === link.path && (
-                <span className="absolute bottom-0 left-0 w-full h-[2px] bg-emerald-500"></span>
+                <span className="absolute bottom-0 left-0 w-full h-[2px] bg-primary"></span>
               )}
             </Link>
           ))}
           <a
             href="mailto:kerllyboi@gmail.com"
-            className="bg-emerald-500 text-black px-6 py-2.5 font-bold rounded-full text-xs uppercase tracking-widest hover:bg-emerald-400 transition-colors"
+            className="bg-primary text-black px-6 py-2.5 font-bold rounded-full text-xs uppercase tracking-widest hover:bg-primary/80 transition-colors"
           >
             Let's Talk
           </a>
@@ -86,14 +82,14 @@ const Navbar: React.FC = () => {
               key={link.path}
               to={link.path}
               onClick={() => setIsOpen(false)}
-              className="text-4xl font-bold font-display tracking-tighter hover:text-emerald-500 transition-colors"
+              className="text-4xl font-bold font-display tracking-tighter hover:text-primary transition-colors"
             >
               {link.name}
             </Link>
           ))}
           <a
             href="mailto:kerllyboi@gmail.com"
-            className="mt-6 w-full bg-emerald-500 text-black text-center py-5 rounded-2xl font-bold text-xl uppercase tracking-widest"
+            className="mt-6 w-full bg-primary text-black text-center py-5 rounded-2xl font-bold text-xl uppercase tracking-widest"
           >
             Hire Me
           </a>

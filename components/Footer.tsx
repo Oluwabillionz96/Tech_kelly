@@ -6,6 +6,7 @@ import {
   Linkedin,
   ArrowUpRight,
   Zap,
+  Facebook,
 } from "lucide-react";
 
 const Footer: React.FC = () => {
@@ -22,7 +23,7 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-32">
           <div className="md:col-span-2">
             <div className="flex items-center gap-3 mb-10">
-              <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
                 <Zap className="text-black w-5 h-5 fill-current" />
               </div>
               <span className="text-xl font-black tracking-[0.2em] uppercase font-display">
@@ -31,11 +32,11 @@ const Footer: React.FC = () => {
             </div>
             <h2 className="text-5xl lg:text-7xl font-bold font-display mb-10 tracking-tighter max-w-xl">
               Let's make some{" "}
-              <span className="text-emerald-500 italic">noise.</span>
+              <span className="text-primary italic">noise.</span>
             </h2>
             <a
               href="mailto:kerllyboi@gmail.com"
-              className="group inline-flex items-center gap-4 text-2xl font-bold border-b-2 border-emerald-500 pb-2 hover:text-emerald-400 hover:border-emerald-400 transition-colors"
+              className="group inline-flex items-center gap-4 text-2xl font-bold border-b-2 border-primary pb-2 hover:text-primary hover:border-primary/80 transition-colors"
             >
               kerllyboi@gmail.com
               <ArrowUpRight className="w-6 h-6 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
@@ -43,7 +44,7 @@ const Footer: React.FC = () => {
           </div>
 
           <div className="lg:pt-10">
-            <h4 className="text-[10px] font-black text-emerald-500 uppercase tracking-[0.4em] mb-8">
+            <h4 className="text-[10px] font-black text-primary uppercase tracking-[0.4em] mb-8">
               Directory
             </h4>
             <ul className="space-y-5 text-zinc-500 font-bold uppercase tracking-widest text-xs">
@@ -69,26 +70,56 @@ const Footer: React.FC = () => {
           </div>
 
           <div className="lg:pt-10">
-            <h4 className="text-[10px] font-black text-emerald-500 uppercase tracking-[0.4em] mb-8">
+            <h4 className="text-[10px] font-black text-primary uppercase tracking-[0.4em] mb-8">
               Follow
             </h4>
             <div className="flex flex-wrap gap-4">
-              {[Instagram, Twitter, Linkedin, Github].map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="p-4 glass rounded-2xl hover:bg-emerald-500 hover:text-black transition-colors"
-                >
-                  <Icon className="w-5 h-5" />
-                </a>
-              ))}
+              {[
+                {
+                  icon: Instagram,
+                  label: "Instagram",
+                  link: "https://www.instagram.com/iamtechkelly",
+                },
+                {
+                  icon: Twitter,
+                  link: "https://x.com/kelly_etim",
+                  label: "X formerly Twitter",
+                },
+                {
+                  icon: Linkedin,
+                  label: "LinkedIn",
+                  link: "https://www.linkedin.com/in/kingsley-etim8120",
+                },
+                {
+                  icon: Facebook,
+                  link: "https://Facebook.com/Techkelly",
+                  label: "Facebook",
+                },
+              ].map((socials, i) => {
+                const Icon = socials.icon;
+                return (
+                  <a
+                    key={i}
+                    href={socials.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={socials.label}
+                    className="p-4 glass rounded-2xl hover:text-primary transition-colors"
+                  >
+                    <Icon className="w-5 h-5" />
+                  </a>
+                );
+              })}
             </div>
           </div>
         </div>
 
         <div className="flex flex-col md:flex-row justify-between items-center pt-12 border-t border-white/5 text-zinc-600 text-[10px] font-bold uppercase tracking-[0.2em] gap-6">
-          <p>© 2024 TECH KELLY. BUILT FOR THE BOLD.</p>
-          <div className="flex gap-10">
+          <p>
+            © {new Date(Date.now()).getFullYear()} TECH KELLY. BUILT FOR THE
+            BOLD.
+          </p>
+          {/* <div className="flex gap-10">
             <a href="#" className="hover:text-white transition-colors">
               Privacy
             </a>
@@ -98,7 +129,7 @@ const Footer: React.FC = () => {
             <a href="#" className="hover:text-white transition-colors">
               Contact
             </a>
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>
