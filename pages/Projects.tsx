@@ -202,9 +202,13 @@ const Projects: React.FC = () => {
               Get in touch to view detailed case studies and discuss your next
               project.
             </p>
-            <button className="bg-primary text-black px-8 py-4 rounded-xl font-bold hover:bg-primary/80 transition-colors">
+            <a
+              href="mailto:oluwabillionz96@gmail.com?subject=Project Inquiry"
+              className="inline-block bg-primary text-black px-8 py-4 rounded-xl font-bold hover:bg-primary/80 transition-colors"
+              aria-label="Contact me via email"
+            >
               Contact Me
-            </button>
+            </a>
           </div>
         </motion.div>
       </div>
