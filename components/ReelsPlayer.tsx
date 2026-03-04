@@ -5,7 +5,7 @@ import {
   PanInfo,
   useMotionValue,
 } from "framer-motion";
-import { X, Play, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, Play, ChevronLeft, ChevronRight, ChevronUp, ChevronDown } from "lucide-react";
 
 interface VideoProject {
   id: number;
@@ -30,8 +30,11 @@ const ReelsPlayer: React.FC<ReelsPlayerProps> = ({
   const [direction, setDirection] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [volume, setVolume] = useState(100);
+  const [showVolumeIndicator, setShowVolumeIndicator] = useState(false);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
+  const volumeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const y = useMotionValue(0);
 
   // Detect mobile
@@ -64,20 +67,20 @@ const ReelsPlayer: React.FC<ReelsPlayerProps> = ({
     };
   }, []);
 
-   const goToNext = useCallback(
-     function () {
-       setDirection(1);
-       setIsPaused(false);
-       setCurrentIndex((prev) => (prev + 1) % videos.length);
-     },
-     [videos.length],
-   );
+  const goToNext = useCallback(
+    function () {
+      setDirection(1);
+      setIsPaused(false);
+      setCurrentIndex((prev) => (prev + 1) % videos.length);
+    },
+    [videos.length],
+  );
 
-   const goToPrev = useCallback(() => {
-     setDirection(-1);
-     setIsPaused(false);
-     setCurrentIndex((prev) => (prev - 1 + videos.length) % videos.length);
-   }, [videos.length]);
+  const goToPrev = useCallback(() => {
+    setDirection(-1);
+    setIsPaused(false);
+    setCurrentIndex((prev) => (prev - 1 + videos.length) % videos.length);
+  }, [videos.length]);
 
   // Keyboard navigation for desktop
   useEffect(() => {
@@ -85,13 +88,48 @@ const ReelsPlayer: React.FC<ReelsPlayerProps> = ({
       if (e.key === "ArrowRight") goToNext();
       if (e.key === "ArrowLeft") goToPrev();
       if (e.key === "Escape") onClose();
+
+      // Volume controls
+      if (e.key === "ArrowUp") {
+        e.preventDefault();
+        setVolume((prev) => {
+          const newVolume = Math.min(100, prev + 5);
+          const currentVideo = videoRefs.current[currentIndex];
+          if (currentVideo) {
+            currentVideo.volume = newVolume / 100;
+          }
+          return newVolume;
+        });
+        setShowVolumeIndicator(true);
+        if (volumeTimeoutRef.current) clearTimeout(volumeTimeoutRef.current);
+        volumeTimeoutRef.current = setTimeout(
+          () => setShowVolumeIndicator(false),
+          1500,
+        );
+      }
+
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        setVolume((prev) => {
+          const newVolume = Math.max(0, prev - 5);
+          const currentVideo = videoRefs.current[currentIndex];
+          if (currentVideo) {
+            currentVideo.volume = newVolume / 100;
+          }
+          return newVolume;
+        });
+        setShowVolumeIndicator(true);
+        if (volumeTimeoutRef.current) clearTimeout(volumeTimeoutRef.current);
+        volumeTimeoutRef.current = setTimeout(
+          () => setShowVolumeIndicator(false),
+          1500,
+        );
+      }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [goToNext, goToPrev, onClose]);
-
- 
+  }, [goToNext, goToPrev, onClose, currentIndex]);
 
   const handleDragEnd = (
     _: MouseEvent | TouchEvent | PointerEvent,
@@ -135,6 +173,9 @@ const ReelsPlayer: React.FC<ReelsPlayerProps> = ({
 
     if (!currentVideo) return;
 
+    // Set volume for current video
+    currentVideo.volume = volume / 100;
+
     currentVideo.play().catch(() => {
       // Auto-play might be blocked, user needs to interact
     });
@@ -148,7 +189,7 @@ const ReelsPlayer: React.FC<ReelsPlayerProps> = ({
     return () => {
       currentVideo.removeEventListener("ended", handleEnded);
     };
-  }, [currentIndex, goToNext]);
+  }, [currentIndex, goToNext, volume]);
 
   return (
     <motion.div
@@ -165,6 +206,36 @@ const ReelsPlayer: React.FC<ReelsPlayerProps> = ({
       >
         <X className="w-5 h-5 text-white" />
       </button>
+
+      {/* Volume Indicator */}
+      <AnimatePresence>
+        {showVolumeIndicator && (
+          <motion.div
+            className="absolute top-1/2 -translate-y-1/2 right-4 z-50 bg-black/80 backdrop-blur-sm rounded-2xl p-4"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            transition={{ duration: 0.2 }}
+          >
+            <div className="flex flex-col items-center gap-3">
+              <ChevronUp className="w-5 h-5 text-white/60" />
+              <div className="flex flex-col items-center gap-2">
+                <span className="text-primary text-sm font-bold">{volume}%</span>
+                <div className="w-2 h-32 bg-white/20 rounded-full overflow-hidden relative">
+                  <motion.div
+                    className="absolute bottom-0 w-full bg-primary rounded-full"
+                    initial={{ height: 0 }}
+                    animate={{ height: `${volume}%` }}
+                    transition={{ duration: 0.2 }}
+                  />
+                </div>
+                <span className="text-white/60 text-xs font-medium">VOL</span>
+              </div>
+              <ChevronDown className="w-5 h-5 text-white/60" />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Desktop Navigation Buttons */}
 
