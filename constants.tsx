@@ -57,7 +57,7 @@ export const SKILLS: Skill[] = [
   { name: "Graphics Design", level: 92, category: "Software" },
   { name: "Motion Graphics", level: 90, category: "Software" },
   { name: "2D & 3D Animations", level: 88, category: "Software" },
-  { name: "Youtube Expert", level: 96, category: "Skillset" },
+  { name: "YouTube Expert", level: 96, category: "Skillset" },
   { name: "Community Building", level: 94, category: "Skillset" },
   { name: "Meme Expert", level: 100, category: "Skillset" },
   { name: "SEO Expert", level: 85, category: "Skillset" },

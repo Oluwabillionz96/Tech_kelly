@@ -7,6 +7,7 @@ import {
   Linkedin,
   ArrowUpRight,
   Zap,
+  Facebook,
 } from "lucide-react";
 import { useContactNavigation } from "@/hooks/useContactNavigation";
 
@@ -77,28 +78,52 @@ const Footer: React.FC = () => {
               Follow
             </h4>
             <div className="flex flex-wrap gap-4">
-              {[Instagram, Twitter, Linkedin, Github].map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="p-4 glass rounded-2xl hover:text-primary transition-colors"
-                >
-                  <Icon className="w-5 h-5" />
-                </a>
-              ))}
+              {[
+                {
+                  icon: Instagram,
+                  label: "Instagram",
+                  link: "https://www.instagram.com/iamtechkelly",
+                },
+                {
+                  icon: Twitter,
+                  link: "https://x.com/kelly_etim",
+                  label: "X formerly Twitter",
+                },
+                {
+                  icon: Linkedin,
+                  label: "LinkedIn",
+                  link: "https://www.linkedin.com/in/kingsley-etim8120",
+                },
+                {
+                  icon: Facebook,
+                  link: "https://Facebook.com/Techkelly",
+                  label: "Facebook",
+                },
+              ].map((socials, i) => {
+                const Icon = socials.icon;
+                return (
+                  <a
+                    key={i}
+                    href={socials.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={socials.label}
+                    className="p-4 glass rounded-2xl hover:text-primary transition-colors"
+                  >
+                    <Icon className="w-5 h-5" />
+                  </a>
+                );
+              })}
             </div>
           </div>
         </div>
 
         <div className="flex flex-col md:flex-row justify-between items-center pt-12 border-t border-white/5 text-zinc-600 text-[10px] font-bold uppercase tracking-[0.2em] gap-6">
-          <p>© 2024 TECH KELLY. BUILT FOR THE BOLD.</p>
+          <p>
+            © {new Date(Date.now()).getFullYear()} TECH KELLY. BUILT FOR THE
+            BOLD.
+          </p>
           <div className="flex gap-10">
-            <a href="#" className="hover:text-white transition-colors">
-              Privacy
-            </a>
-            <a href="#" className="hover:text-white transition-colors">
-              Legal
-            </a>
             <button
               onClick={(e) => {
                 e.preventDefault();

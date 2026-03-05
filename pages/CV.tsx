@@ -73,16 +73,15 @@ const CV: React.FC = () => {
           </div>
           <motion.a
             href="/CV.pdf"
+            className="flex items-center gap-3 bg-white text-black px-10 py-5 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-primary transition-colors"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ ...animationTransition(0.8), delay: 0.8 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <button className="flex items-center gap-3 bg-white text-black px-10 py-5 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-primary transition-colors">
-              <Download className="w-5 h-5" />
-              View Resume
-            </button>
+            <Download className="w-5 h-5" />
+            View Resume
           </motion.a>
         </motion.div>
 
