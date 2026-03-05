@@ -2,8 +2,11 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Palette, Film, Sparkles, ArrowRight } from "lucide-react";
+import { useContactNavigation } from "@/hooks/useContactNavigation";
 
 const Projects: React.FC = () => {
+  const { navigateToContact } = useContactNavigation();
+
   const categories = [
     {
       id: 1,
@@ -206,7 +209,10 @@ const Projects: React.FC = () => {
               Get in touch to view detailed case studies and discuss your next
               project.
             </p>
-            <button className="bg-primary text-black px-8 py-4 rounded-xl font-bold hover:bg-primary/80 transition-colors">
+            <button
+              onClick={navigateToContact}
+              className="bg-primary text-black px-8 py-4 rounded-xl font-bold hover:bg-primary/80 transition-colors"
+            >
               Contact Me
             </button>
           </div>

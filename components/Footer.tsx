@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   Github,
   Twitter,
@@ -7,8 +8,11 @@ import {
   ArrowUpRight,
   Zap,
 } from "lucide-react";
+import { useContactNavigation } from "@/hooks/useContactNavigation";
 
 const Footer: React.FC = () => {
+  const { navigateToContact } = useContactNavigation();
+
   return (
     <footer className="bg-[#050505] border-t border-white/5 pt-32 pb-16 overflow-hidden relative">
       {/* Static Background Decoration */}
@@ -95,9 +99,15 @@ const Footer: React.FC = () => {
             <a href="#" className="hover:text-white transition-colors">
               Legal
             </a>
-            <a href="#" className="hover:text-white transition-colors">
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                navigateToContact();
+              }}
+              className="hover:text-white transition-colors"
+            >
               Contact
-            </a>
+            </button>
           </div>
         </div>
       </div>

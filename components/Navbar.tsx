@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import Logo from "./Logo";
+import { useContactNavigation } from "@/hooks/useContactNavigation";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const { navigateToContact } = useContactNavigation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,6 +17,12 @@ const Navbar: React.FC = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleContactClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsOpen(false); // Close mobile menu if open
+    navigateToContact();
+  };
 
   const navLinks = [
     { name: "Home", path: "/" },
@@ -57,12 +65,12 @@ const Navbar: React.FC = () => {
               )}
             </Link>
           ))}
-          <a
-            href="mailto:kerllyboi@gmail.com"
+          <button
+            onClick={handleContactClick}
             className="bg-primary text-black px-6 py-2.5 font-bold rounded-full text-xs uppercase tracking-widest hover:bg-primary/80 transition-colors"
           >
             Let's Talk
-          </a>
+          </button>
         </div>
 
         {/* Mobile Toggle */}
@@ -87,12 +95,12 @@ const Navbar: React.FC = () => {
               {link.name}
             </Link>
           ))}
-          <a
-            href="mailto:kerllyboi@gmail.com"
+          <button
+            onClick={handleContactClick}
             className="mt-6 w-full bg-primary text-black text-center py-5 rounded-2xl font-bold text-xl uppercase tracking-widest"
           >
             Hire Me
-          </a>
+          </button>
         </div>
       )}
     </nav>

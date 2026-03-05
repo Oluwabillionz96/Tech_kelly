@@ -1,6 +1,7 @@
 import HeroSection from "@/components/hero-section";
 import ServicesSection from "@/components/services-section";
 import SkillBarSection from "@/components/skill-bar-section";
+import ContactSection from "@/components/ContactSection";
 
 const Home: React.FC = () => {
   return (
@@ -14,6 +15,9 @@ const Home: React.FC = () => {
       <HeroSection />
       <ServicesSection />
       <SkillBarSection />
+      <div id="contact">
+        <ContactSection />
+      </div>
     </div>
   );
 };
